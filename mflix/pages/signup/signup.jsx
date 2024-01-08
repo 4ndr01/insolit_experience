@@ -7,15 +7,42 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Ajoutez ici la logique de gestion de l'inscription, par exemple une requête API
+        // Vérifiez si les mots de passe correspondent
+        if (password !== confirmPassword) {
+            setError("Les mots de passe ne correspondent pas");
+            return;
+        }
 
-        // Réinitialisez les champs après l'inscription réussie
-        setEmail('');
-        setPassword('');
-        setConfirmPassword('');
+        try {
+            // Simulation de la requête d'inscription
+            const response = await fetch('/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            // Vérifiez la réponse de l'API
+            if (response.ok) {
+                // Réinitialisez les champs après une inscription réussie
+                setEmail('');
+                setPassword('');
+                setConfirmPassword('');
+                setError('');
+                // Redirigez l'utilisateur vers une page de confirmation, par exemple
+                // router.push('/registration-success');
+            } else {
+                const data = await response.json();
+                setError(data.error || 'Erreur lors de l\'inscription');
+            }
+        } catch (error) {
+            console.error('Erreur lors de la requête d\'inscription', error);
+            setError('Erreur lors de l\'inscription');
+        }
     };
 
     return (
