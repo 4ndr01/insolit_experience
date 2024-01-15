@@ -1,5 +1,6 @@
 // utils/db.js
 import mongoose from 'mongoose';
+import { MongoClient } from 'mongodb';
 
 const MONGODB_URI = 'mongodb+srv://root:root@cluster0.zm4brx5.mongodb.net/';
 
@@ -9,17 +10,16 @@ if (!MONGODB_URI) {
   );
 }
 
-async function connectMongoDB() {
+export default async function connectMongoDB() {
   try {
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const client = new MongoClient(MONGODB_URI);
+    await client.connect();
     console.log('Connected to the database');
+
+    return { client, db: client.db() };
   } catch (error) {
-    console.error('Error connecting to the database', error);
-    process.exit(1);
+    console.error('Error connecting to the database:', error);
+    throw new Error('Unable to connect to the database');
   }
 }
 
-export default connectMongoDB;

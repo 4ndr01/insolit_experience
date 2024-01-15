@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Body from "./body";
 
 const Main = () => {
     return (
@@ -15,9 +16,10 @@ const Main = () => {
                             Accueil
 
                         </Link>
-                        <Link href="/login">
+                        <Link href="/login/login">
                             Connexion
                         </Link>
+
                         <Link href="/contact">
                             Contact
                         </Link>
@@ -30,6 +32,9 @@ const Main = () => {
                 </div>
             </div>
         </header>
+
+
+        //corp de la page
     );
 };
 

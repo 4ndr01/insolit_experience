@@ -1,4 +1,4 @@
-// pages/register.js
+// pages/login.js
 import { useState } from 'react';
 
 const Register = () => {

@@ -13,22 +13,20 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const res = await signIn('credentials', {
-                email,
-                password,
-                redirect: false,
+            // Simulation de la requête d'inscription
+            const response = await fetch('/api/login/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({email, password}),
             });
-
-            if (res.error) {
-                setError('Identifiants invalides');
-                return;
-            }
-
-             router.push('/index.jsx');
         } catch (error) {
-            console.error(error);
+            console.error('Erreur lors de la requête d\'inscription', error);
+            setError('Erreur lors de l\'inscription');
         }
-    };
+        await router.replace('/')
+    }
 
     return (
             <section className="min-h-screen flex items-center justify-center">
