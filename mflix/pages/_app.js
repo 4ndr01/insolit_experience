@@ -1,13 +1,8 @@
 import './output.css';
-import Body from "./body";
-import Main from "./index";
-function MyApp({Children}) {
-    return (
-        <div>
-            <Main/>
-            <Body/>
-        </div>
-    )
+import Body from "./components/body/body";
+function MyApp({ Component, pageProps }) {
+
+    return <Component {...pageProps} />;
 }
 
 export default MyApp;

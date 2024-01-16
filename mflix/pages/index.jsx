@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import Body from "./body";
+import Link from "next/link";
+import Body from "./components/body/body";
 
 const Main = () => {
     return (
-        <header className="bg-white dark:bg-dark">
+<>
             <div className="container mx-auto px-6 py-3">
                 <div className="flex items-center justify-between">
                     <div className="hidden w-full text-gray-600 md:flex md:items-center">
@@ -16,9 +16,14 @@ const Main = () => {
                             Accueil
 
                         </Link>
-                        <Link href="/login/login">
+                        <Link
+                            href="/login/login"
+                            className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
+
+                        >
                             Connexion
                         </Link>
+
 
                         <Link href="/contact">
                             Contact
@@ -30,8 +35,13 @@ const Main = () => {
 
                     {/* Autres éléments du header peuvent être ajoutés ici */}
                 </div>
+                <section className="min-h-screen flex items-center justify-center">
+                    <Body />
+                </section>
             </div>
-        </header>
+
+
+</>
 
 
         //corp de la page

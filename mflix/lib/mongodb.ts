@@ -1,6 +1,5 @@
 // utils/db.js
 import mongoose from 'mongoose';
-import { MongoClient } from 'mongodb';
 
 const MONGODB_URI = 'mongodb+srv://root:root@cluster0.zm4brx5.mongodb.net/';
 
@@ -10,16 +9,29 @@ if (!MONGODB_URI) {
   );
 }
 
+// @ts-ignore
+let cachedConnection = null;
+
 export default async function connectMongoDB() {
   try {
-    const client = new MongoClient(MONGODB_URI);
-    await client.connect();
-    console.log('Connected to the database');
+    // @ts-ignore
+    if (!cachedConnection) {
+      const options = {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      };
 
-    return { client, db: client.db() };
+      // @ts-ignore
+      const connection = await mongoose.connect(MONGODB_URI, options);
+
+      console.log('Connected to the database');
+      cachedConnection = connection;
+    }
+
+    // @ts-ignore
+    return { db: cachedConnection.connection.db };
   } catch (error) {
     console.error('Error connecting to the database:', error);
     throw new Error('Unable to connect to the database');
   }
 }
-

@@ -18,7 +18,7 @@ const Register = () => {
 
         try {
             // Simulation de la requête d'inscription
-            const response = await fetch('/api/signup', {
+            const response = await fetch('/api/signup/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
