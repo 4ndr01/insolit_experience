@@ -4,6 +4,7 @@ import { useState } from 'react';
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
@@ -23,13 +24,14 @@ const Register = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password,name }),
             });
 
             // Vérifiez la réponse de l'API
             if (response.ok) {
                 // Réinitialisez les champs après une inscription réussie
                 setEmail('');
+                setName('')
                 setPassword('');
                 setConfirmPassword('');
                 setError('');
@@ -50,6 +52,17 @@ const Register = () => {
             <h2 className="text-2xl font-semibold mb-4">Inscription</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+                        Nom
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="mt-1 p-2 w-full border rounded-md"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                     <label htmlFor="email" className="block text-sm font-medium text-gray-600">
                         Adresse email
                     </label>

@@ -4,6 +4,12 @@ const userSchema = new Schema(
 
     {
         userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+            maxlength: 32,
+        },
 
         email: {
             type: String,
@@ -11,6 +17,12 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
+            required: true,
+        },
+        role: {
+            type: String,
+            enum: ["user", "administrateur"],
+            default: "user",
             required: true,
         },
     },

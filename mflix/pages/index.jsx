@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Body from "./components/body/body";
 
 const Main = () => {
     return (
@@ -36,7 +35,6 @@ const Main = () => {
                     {/* Autres éléments du header peuvent être ajoutés ici */}
                 </div>
                 <section className="min-h-screen flex items-center justify-center">
-                    <Body />
                 </section>
             </div>
 
