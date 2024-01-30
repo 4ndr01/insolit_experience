@@ -1,0 +1,27 @@
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+# Add any environment variables needed for your CI/CD process
+
+before_script:
+  - npm install  # Install dependencies, adjust based on your project's requirements
+
+build:
+  stage: build
+  script:
+    - npm run build  # Adjust based on your build script
+
+test:
+  stage: test
+  script:
+    - npm run test  # Adjust based on your test script
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to production"  # Add your deployment script
+  only:
+    - master  # Only deploy when changes are pushed to the master branch
