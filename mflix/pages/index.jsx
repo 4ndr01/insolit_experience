@@ -1,14 +1,36 @@
+"use client";
 import Link from "next/link";
 import SearchBar from "../components/SearchBar";
 import Activity from "../components/activity";
 import 'tailwindcss/tailwind.css';
-import {Fade} from "@mui/material";
-
+import Loading from "../components/loading";
+import {useRouter} from "next/router";
+import {useEffect, useState} from "react";
+import Carousel from "../components/caroussel";
 const Main = () => {
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        const handleStart = () => setLoading(true);
+        const handleComplete = () => setLoading(false);
+
+        router.events.on('routeChangeStart', handleStart);
+        router.events.on('routeChangeComplete', handleComplete);
+        router.events.on('routeChangeError', handleComplete);
+
+        return () => {
+            router.events.off('routeChangeStart', handleStart);
+            router.events.off('routeChangeComplete', handleComplete);
+            router.events.off('routeChangeError', handleComplete);
+        };
+    }, [router]);
     return (
+
         <>
-            <div className="bg-primary py-3 px-4 md:px-6 lg:px-8 xl:px-10">
-                <div className="container mx-auto flex items-center justify-between">
+            {loading && <Loading />} {/* Affichez le composant de chargement lorsque loading est vrai */}
+            <div className="bg-primary py-3 px-4 md:px-6 lg:px-8 xl:px-10 h-20">
+                <div className="container mx-auto flex items-center justify-between h-12 ml-22">
                     <Link href="/">
                         <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Accueil</p>
                     </Link>
@@ -19,7 +41,6 @@ const Main = () => {
                         <Link href="/login/login">
                             <p className="text-dark font-bold hover:opacity-80 transition duration-300 mr-3">Connexion</p>
                         </Link>
-
                         <Link href="/signup/signup">
                             <p className="text-dark font-bold hover:opacity-80 transition duration-300">Inscription</p>
                         </Link>
@@ -36,17 +57,18 @@ const Main = () => {
                     Bienvenue sur notre site de voyage, où vous pouvez explorer des destinations exotiques, trouver des
                     offres incroyables et planifier votre prochaine aventure mémorable.
                 </p>
+
                 {/* Ajoutez d'autres éléments de la présentation ici */}
             </section>
+
+
             <div className="container mx-auto my-8 px-6 mt-20">
                 <SearchBar/>
             </div>
 
-            <Activity/>
+            <Carousel/>
 
         </>
-
-
     );
 };
 

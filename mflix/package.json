@@ -11,6 +11,8 @@
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-slick": "^0.30.1",
+    "slick-carousel": "^1.8.1",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
