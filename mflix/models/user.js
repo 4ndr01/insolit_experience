@@ -25,6 +25,13 @@ const userSchema = new Schema(
             default: "user",
             required: true,
         },
+        commande: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Commande",
+            },
+        ],
+
     },
     { timestamps: true }
 );
