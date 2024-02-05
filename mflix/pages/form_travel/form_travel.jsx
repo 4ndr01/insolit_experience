@@ -6,7 +6,6 @@ import Link from "next/link";
 import loading from "../../components/loading";
 import Travel from "../../models/travel";
 import connectMongoDB from "../../lib/mongodb";
-import axios from "axios";
 const MontageForm = ({userId}) => {
     const [destination, setDestination] = useState('');
     const [departDate, setDepartDate] = useState('');
@@ -23,12 +22,13 @@ const MontageForm = ({userId}) => {
                     nombrePersonnes,
                     userId
                 }
-                try {
-                    const response = await axios.post('/api/travel/travel', voyage);
-                    console.log(response);
-                } catch (error) {
-                    console.log(error);
-                }
+                const response = await fetch('/api/travel/travel', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(voyage)
+                });
             }
 
 
