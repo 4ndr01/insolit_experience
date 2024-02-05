@@ -7,12 +7,10 @@ import Loading from "../components/loading";
 import {useRouter} from "next/router";
 import {useEffect, useState} from "react";
 import Carousel from "../components/caroussel";
-import { signOut, useSession } from "next-auth/react";
 
 const Main = () => {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
-    const { status, data: session } = useSession();
 
 
 
@@ -47,33 +45,9 @@ const Main = () => {
                         <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Explorer</p>
                     </Link>
                     <div className="hidden md:flex space-x-4">
-                        {status === "authenticated" ? (
-                                <button
-                                    onClick={() => signOut()}
-                                    className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
-                                >
-                                    Déconnexion
-                                </button>
-                            ) : (
-                            <Link
-                                href="/login/login"
-                                className="hidden py-3 px-7 text-base font-bold text-dark hover:opacity-70 dark:text-white md:block"
-                            >
-                                Connexion
-                            </Link>
-                        )}
-
-                        {status === "authenticated" ? (
-                            <Link href="/profile/profile">
-                                <p className="text-dark font-bold hover:opacity-80 transition duration-300">Profil</p>
-                            </Link>
-                        ) : (
-                            <Link href="/signup/signup">
-                                <p className="text-dark font-bold hover:opacity-80 transition duration-300">Inscription</p>
-                            </Link>
-                        )}
 
 
+                        
                     </div>
                 </div>
             </div>
