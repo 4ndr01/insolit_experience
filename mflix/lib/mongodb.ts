@@ -5,7 +5,7 @@ const MONGODB_URI = 'mongodb+srv://root:root@cluster0.zm4brx5.mongodb.net/';
 
 if (!MONGODB_URI) {
   throw new Error(
-      'Please define the MONGODB_URI environment variable inside .env.local'
+      'Please define the MONGODB_URI environment variable inside .env.local.local'
   );
 }
 
