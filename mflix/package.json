@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 4400"
+
   },
   "dependencies": {
     "@vercel/speed-insights": "^1.0.9",

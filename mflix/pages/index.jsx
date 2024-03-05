@@ -48,17 +48,7 @@ const Main = () => {
                     <Link href="/form_travel/form_travel">
                         <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Explorer</p>
                     </Link>
-                    <div className="hidden md:flex space-x-4">
-                        <Link href="/login/login">
-                            <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Se connecter</p>
-                        </Link>
-                        <Link href="/signup/signup">
-                            <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">S'inscrire</p>
-                        </Link>
 
-
-                        
-                    </div>
                 </div>
             </div>
 

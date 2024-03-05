@@ -32,6 +32,8 @@ const Login = () => {
             <section className="min-h-screen flex items-center justify-center">
             <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl text-center mb-4">Connexion</h2>
+
+
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
                         <label htmlFor="email" className="block text-sm font-medium text-red">
