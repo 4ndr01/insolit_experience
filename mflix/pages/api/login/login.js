@@ -1,6 +1,8 @@
 import connectMongoDB from '../../../lib/mongodb';
 import bcrypt from 'bcryptjs';
 export default async function handler(req, res) {
+    const bcrypt = require('bcryptjs');
+
     if (req.method === 'POST') {
         const { email, password } = await req.body;
 

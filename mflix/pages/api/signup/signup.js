@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import User from "../../../models/user";
 
 export default async function handler(req, res) {
+  const bcrypt = require('bcryptjs');
+
   if (req.method === "POST") {
     try {
       const { name, email, password } = await req.body;
