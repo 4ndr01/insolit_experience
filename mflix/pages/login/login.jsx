@@ -30,7 +30,7 @@ const Login = () => {
     }
 
     return (
-            <section className="min-h-screen flex items-center justify-center">
+        <section className="min-h-screen flex items-center justify-center">
             <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl text-center mb-4">Connexion</h2>
 
@@ -67,6 +67,14 @@ const Login = () => {
                         Connexion
                     </button>
                 </form>
+            </div>
+            //ajout de la page de connexion
+
+
+            <div className="mt-4 max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+                <a className="mt-4 w-full bg-primary text-white p-3 rounded-md" href="/api/auth/signin/google">
+                    Se connecter avec Google
+                </a>
             </div>
         </section>
     );

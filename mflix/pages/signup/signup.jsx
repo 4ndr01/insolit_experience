@@ -1,5 +1,6 @@
 // pages/login.js
 import { useState } from 'react';
+import Link from "next/link";
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -48,22 +49,12 @@ const Register = () => {
     };
 
     return (
-        <div className="container mx-auto p-4">
-            <h2 className="text-2xl font-semibold mb-4">Inscription</h2>
+    <section className="flex flex-col items-center h-screen md:flex-row">
+        <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl text-center mb-4">Inscription</h2>
             <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-600">
-                        Nom
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+                    <label htmlFor="email" className="block text-sm font-medium text-red">
                         Adresse email
                     </label>
                     <input
@@ -76,7 +67,20 @@ const Register = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="password" className="block text-sm font-medium text-gray-600">
+                    <label htmlFor="name" className="block text-sm font-medium text-red">
+                        Nom
+                    </label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        className="mt-1 p-2 w-full border rounded-md"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="password" className="block text-sm font-medium text-red">
                         Mot de passe
                     </label>
                     <input
@@ -89,7 +93,7 @@ const Register = () => {
                     />
                 </div>
                 <div className="mb-4">
-                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-600">
+                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-red">
                         Confirmer le mot de passe
                     </label>
                     <input
@@ -101,12 +105,25 @@ const Register = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                 </div>
-                {error && <p className="text-red-500 mb-4">{error}</p>}
-                <button type="submit" className="bg-blue-500 text-black p-2 rounded-md">
+                {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                <button
+                    type="submit"
+                    className="w-full bg-black text-white p-2 rounded-md"
+                >
                     S'inscrire
                 </button>
             </form>
+
         </div>
+        //ajout bouton connexion with google
+        <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+            <h2 className="text-2xl text-center mb-4">Connexion avec Google</h2>
+            <Link href="/api/auth/signin">
+                <p className="text-center bg text-blue-500 cursor-pointer">Connexion avec Google</p>
+            </Link>
+        </div>
+
+    </section>
     );
 };
 
