@@ -935,3 +935,19 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(29 33 68 / var(--tw-bg-opacity));
 }
+
+.w-140 {
+  width: 35rem;
+}
+
+.h-75 {
+  height: 18.75rem;
+}
+
+.h-80 {
+  height: 20rem;
+}
+
+.h-100 {
+  height: 25rem;
+}

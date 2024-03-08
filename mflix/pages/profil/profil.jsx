@@ -1,25 +1,15 @@
-import {useSession} from "next-auth/react";
-import Btn from "../../components/btn_auth";
-import Link from "next/link";
+import {signOut, useSession} from "next-auth/react";
+import NavComponent from "../../components/nav";
 
 
 const Profile = () => {
+
+
   const { data: session } = useSession()
     const user = session?.user
   return (
-      <div className="bg-primary py-3 px-4 md:px-6 lg:px-8 xl:px-10 h-20">
-        <div className="container mx-auto flex items-center justify-between h-12 ml-22">
-          <Btn/>
-          <Link href="/">
-            <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Accueil</p>
-          </Link>
-          <Link href="/contact/contact">
-            <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Contact</p>
-          </Link>
-          <Link href="/form_travel/form_travel">
-            <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Explorer</p>
-          </Link>
-        </div>
+      <>
+        <NavComponent/>
         <section className="bg-white py-20">
             <div className="container mx-auto">
                 <h1 className="text-4xl font-bold text-center mb-8">Profile</h1>
@@ -36,7 +26,8 @@ const Profile = () => {
                 </div>
             </div>
         </section>
-      </div>
-  )
+        </>
+    );
+
 }
 export default Profile;
