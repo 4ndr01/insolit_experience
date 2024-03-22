@@ -1,7 +1,8 @@
-// pages/login.js
+"use client";
 import { useState } from 'react';
 import Link from "next/link";
 import {signIn} from "next-auth/react";
+import {router} from "next/client";
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -12,6 +13,21 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const resUserExists = await fetch("/api/userExist/userExist", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({email}),
+        });
+
+        const {user} = await resUserExists.json();
+
+        if (user) {
+            setError("User already exists.");
+            return;
+        }
 
         // Vérifiez si les mots de passe correspondent
         if (password !== confirmPassword) {
@@ -37,8 +53,7 @@ const Register = () => {
                 setPassword('');
                 setConfirmPassword('');
                 setError('');
-                // Redirigez l'utilisateur vers une page de confirmation, par exemple
-                // router.push('/registration-success');
+                 await router.push('/');
             } else {
                 const data = await response.json();
                 setError(data.error || 'Erreur lors de l\'inscription');
@@ -47,6 +62,8 @@ const Register = () => {
             console.error('Erreur lors de la requête d\'inscription', error);
             setError('Erreur lors de l\'inscription');
         }
+
+
     };
 
     return (
@@ -116,7 +133,6 @@ const Register = () => {
             </form>
 
         </div>
-        //ajout bouton connexion with google
         <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
             <h2 className="text-2xl text-center mb-4">Connexion avec Google</h2>
             <button

@@ -1,121 +1,138 @@
-"use client";
+// Import des dépendances nécessaires
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Loading from "../../components/loading";
-import Link from "next/link";
-import loading from "../../components/loading";
-import Travel from "../../models/travel";
-import connectMongoDB from "../../lib/mongodb";
-const MontageForm = ({userId}) => {
+import { useRouter } from "next/router"; // Utilisation de useRouter au lieu de next/navigation
+import { useSession } from "next-auth/react";
+
+// Définition du composant MontageForm
+const MontageForm = () => {
+    // États locaux
     const [destination, setDestination] = useState('');
     const [departDate, setDepartDate] = useState('');
     const [retourDate, setRetourDate] = useState('');
     const [nombrePersonnes, setNombrePersonnes] = useState(1);
+    const [userId, setUserId] = useState("");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [isFormValid, setIsFormValid] = useState(false);
+    const { data: session } = useSession();
+    const router = useRouter();
 
+    // Effet pour mettre à jour les données de session
+    useEffect(() => {
+        if (session) {
+            setUserId(session.user.userId);
+            setName(session.user.name || "");
+            setEmail(session.user.email || "");
+        }
+    }, [session]);
 
-            const handleVoyageSubmit = async (data) => {
-                data.preventDefault();
-                const voyage = {
+    // Fonction pour nettoyer l'entrée
+    const sanitizeInput = (input) => {
+        return input.replace(/<\/?[^>]+(>|$)/g, "");
+    };
+
+    // Gestionnaire de changement pour le champ de destination
+    const handleTextAreaChange = (e) => {
+        setDestination(sanitizeInput(e.target.value));
+    };
+
+    // Validation du texte de destination
+    const validateTextArea = (text) => {
+        return text.length >= 5;
+    };
+
+    // Effet pour valider le formulaire
+    useEffect(() => {
+        setIsFormValid(name && email && destination && validateTextArea(destination));
+    }, [name, email, destination]);
+
+    // Fonction de soumission du formulaire
+    const submit = async (e) => {
+        e.preventDefault();
+        if (!isFormValid) return;
+
+        try {
+            const response = await fetch("/api/travel/travel", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    userId,
+                    name,
+                    email,
                     destination,
                     departDate,
                     retourDate,
                     nombrePersonnes,
-                    userId
-                }
-                const response = await fetch('/api/travel/travel', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(voyage)
-                });
+                }),
+            });
+
+            if (response.ok) {
+                await router.push("/");
+            } else {
+                console.error("Échec de la soumission du formulaire");
             }
+        } catch (error) {
+            console.error("Erreur lors de la soumission du formulaire", error);
+        }
+    };
 
-
-
-
+    // Rendu du composant
     return (
-        <>
-            {loading && <Loading />} {/* Affichez le composant de chargement lorsque loading est vrai */}
-            <div className="bg-primary py-3 px-4 md:px-6 lg:px-8 xl:px-10 h-20 mb-6">
-                <div className="container mx-auto flex items-center justify-between h-12 ml-22">
-                    <Link href="/">
-                        <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Accueil</p>
-                    </Link>
-                    <Link href="/contact/contact">
-                        <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Contact</p>
-                    </Link>
-                    <Link href="/form_travel/form_travel">
-                        <p className="text-white text-lg font-bold hover:opacity-80 transition duration-300">Explorer</p>
-                    </Link>
-                    <div className="hidden md:flex space-x-4">
-                        <Link href="/login/login">
-                            <p className="text-dark font-bold hover:opacity-80 transition duration-300 mr-3">Connexion</p>
-                        </Link>
-                        <Link href="/signup/signup">
-                            <p className="text-dark font-bold hover:opacity-80 transition duration-300">Inscription</p>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+        <div className="container">
+            <h1>Créer un montage</h1>
+            <form onSubmit={submit}>
+                <label htmlFor="destination" className="block mt-4">
+                    Destination
+</label>
+                <textarea
+                    id="destination"
+                    name="destination"
+                    value={destination}
+                    onChange={handleTextAreaChange}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                ></textarea>
+                <label htmlFor="departDate" className="block mt-4">
+                    Date de départ
+</label>
+                <input
+                    type="date"
+                    id="departDate"
+                    name="departDate"
+                    value={departDate}
+                    onChange={(e) => setDepartDate(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                />
+                <label htmlFor="retourDate" className="block mt-4">
+                    Date de retour
+</label>
+                <input
+                    type="date"
+                    id="retourDate"
+                    name="retourDate"
+                    value={retourDate}
+                    onChange={(e) => setRetourDate(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                />
+                <label htmlFor="nombrePersonnes" className="block mt-4">
+                    Nombre de personnes
+</label>
+                <input
+                    type="number"
+                    id="nombrePersonnes"
+                    name="nombrePersonnes"
+                    value={nombrePersonnes}
+                    onChange={(e) => setNombrePersonnes(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-md"
+                />
+                <button type="submit" className="mt-4 w-full bg-primary text-white p-3 rounded-md">
+                    Créer le montage
+                </button>
+            </form>
+        </div>
+    );
+};
 
-            <div className="container mx-auto">
-                <h1 className="text-3xl font-bold text-dark mb-6">Créer un voyage</h1>
-                <form onSubmit={handleVoyageSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="destination" className="block text-dark font-bold mb-2">Destination</label>
-                        <input
-                            type="text"
-                            id="destination"
-                            name="destination"
-                            value={destination}
-                            onChange={(e) => setDestination(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="departDate" className="block text-dark font-bold mb-2">Date de départ</label>
-                        <input
-                            type="date"
-                            id="departDate"
-                            name="departDate"
-                            value={departDate}
-                            onChange={(e) => setDepartDate(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="retourDate" className="block text-dark font-bold mb-2">Date de retour</label>
-                        <input
-                            type="date"
-                            id="retourDate"
-                            name="retourDate"
-                            value={retourDate}
-                            onChange={(e) => setRetourDate(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="nombrePersonnes" className="block text-dark font-bold mb-2">Nombre de personnes</label>
-                        <input
-                            type="number"
-                            id="nombrePersonnes"
-                            name="nombrePersonnes"
-                            value={nombrePersonnes}
-                            onChange={(e) => setNombrePersonnes(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:border-primary"
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="bg-primary text-white font-bold py-3 px-6 rounded-md hover:opacity-80 transition duration-300"
-                    >
-                        Créer le voyage
-                    </button>
-                </form>
-            </div>
-        </>
-    )
-}
-
+// Export du composant MontageForm
 export default MontageForm;

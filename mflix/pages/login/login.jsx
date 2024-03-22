@@ -22,15 +22,32 @@ const Login = () => {
                 redirect: false,
             });
 
-            if (res.error) {
-                setError("Identifiants incorrects");
-                toast.error(error);
-                return;
-            }
+            if (res.ok) {
+                // Après l'enregistrement réussi, connectez l'utilisateur
+                const signInResponse = await signIn("credentials", {
+                    redirect: false, // Ne pas rediriger, gérer la redirection manuellement si nécessaire
+                    email, // Utilisez l'email de l'utilisateur
+                    password, // Utilisez le mot de passe de l'utilisateur
+                });
 
-            router.push("/");
+                if (signInResponse.error) {
+                    // Gérez les erreurs de connexion ici
+                    console.error("Error during sign-in:", signInResponse.error);
+                    return;
+                }
+
+                // L'utilisateur est maintenant connecté
+
+                const form = e.target;
+                form.reset();
+                await router.push("/"); // Redirigez l'utilisateur vers la page souhaitée après la connexion
+            } else {
+                // Afficher un message d'erreur
+                setError('Adresse email ou mot de passe incorrect');
+            }
         } catch (error) {
-            console.log(error);
+            console.error('An unexpected error happened:', error);
+            setError('Quelque chose s\'est mal passé');
         }
     };
 

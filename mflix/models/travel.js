@@ -12,15 +12,15 @@ try {
     const travelSchema = new mongoose.Schema({
       destination: {
         type: String,
-        required: true,
+        required: false,
       },
       departDate: {
         type: Date,
-        required: true,
+        required: false,
       },
       retourDate: {
         type: Date,
-        required: true,
+        required: false,
       },
       nombrePersonnes: {
         type: String,
@@ -28,12 +28,20 @@ try {
       },
       userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: 'User',
+        required: true
       }
-
     });
 
-  Travel = mongoose.model('Travel', travelSchema);
+  travelSchema.pre(/^find/, function (next) {
+    this.populate({
+      path: "user",
+      select: "name email _id ",
+    });
+
+    next();
+  });
+    Travel = mongoose.model('Travel', travelSchema);
 }
 
 export default Travel;

@@ -1,29 +1,47 @@
 import connectMongoDB from "../../../lib/mongodb";
-import mongoose from "mongoose";
 import Travel from "../../../models/travel";
+import User from "../../../models/user";
+import mongoose from "mongoose"; // Importez le modèle utilisateur
 
-export default async function handler(req, res) {
-    if (req.method === 'POST') {
-        const { destination, departDate, retourDate, nombrePersonnes, userId } = req.body;
+export default async function POST(request, response) {
+    const { destination, departDate, retourDate, nombrePersonnes, userId } = request.body;
 
-        try {
-            const db = await connectMongoDB();
-            await Travel.create({
-                destination,
-                departDate: new Date(departDate),
-                retourDate: new Date(retourDate),
-                nombrePersonnes,
-                userId,
+    try {
+        await connectMongoDB();
+
+        // Vérifiez l'ID utilisateur
+        if (!mongoose.Types.ObjectId.isValid(userId)) {
+            response.status(400).json({
+                success: false,
+                message: "ID utilisateur invalide.",
             });
-
-            return res.status(201).json({ success: true, message: 'Voyage enregistré avec succès!' });
-        } catch (error) {
-            console.error('Erreur lors de l\'enregistrement du voyage:', error);
-            return res.status(500).json({ success: false, message: 'Erreur lors de l\'enregistrement du voyage' });
+            return;
         }
-    } else {
-        // Méthode non autorisée
-        return res.status(405).end();
+
+        const travel = new Travel({
+            destination,
+            departDate,
+            retourDate,
+            nombrePersonnes,
+            userId,
+        });
+        await travel.save();
+
+        const user = await User.findById(userId);
+        if (user) {
+            user.commande.push(travel._id); // Assumant qu'il y a un champ 'commande'
+            await user.save();
+        }
+
+        response.status(201).json({
+            success: true,
+            message: "Voyage créé avec succès.",
+            data: travel,
+        });
+    } catch (error) {
+        response.status(500).json({
+            success: false,
+            message: error.message,
+        });
     }
 }
-

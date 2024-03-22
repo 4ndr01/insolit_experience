@@ -28,7 +28,8 @@ const userSchema = new Schema(
         commande: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Commande",
+                ref: "Travel",
+                required: true,
             },
         ],
 
