@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Link from "next/link";
 import {signIn} from "next-auth/react";
-import {router} from "next/client";
+import { useRouter } from 'next/router';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -10,6 +10,8 @@ const Register = () => {
     const [name, setName] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+    const router = useRouter(); // Utilisation correcte
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

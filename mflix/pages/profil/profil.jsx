@@ -2,7 +2,7 @@ import {signOut, useSession} from "next-auth/react";
 import NavComponent from "../../components/nav";
 import {useEffect, useState} from "react";
 import travel from "../../models/travel";
-import {router} from "next/client";
+import { useRouter } from 'next/router';
 
 
 
@@ -13,6 +13,8 @@ const Profile = () => {
     const user = session?.user;
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
+    const router = useRouter(); // Utilisation correcte
+
 
 
     useEffect(() => {
