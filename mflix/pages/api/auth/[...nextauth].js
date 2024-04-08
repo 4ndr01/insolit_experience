@@ -4,8 +4,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import User from "/models/user";
 import connectMongoDB from "/lib/mongodb";
 
-const bcrypt = require("bcrypt");
 const authOptions = {
+
     // Configure one or more authentication providers
     providers: [
         GoogleProvider({
@@ -84,6 +84,7 @@ export default {
             credentials: {},
             async authorize(credentials) {
                 const { email, password } = credentials;
+                const bcrypt = require("bcrypt");
 
                 try {
                     await connectMongoDB();
