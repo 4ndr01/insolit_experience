@@ -17,6 +17,8 @@ const authOptions = {
             credentials: {},
             async authorize(credentials) {
                 const { email, password } = credentials;
+                const bcrypt = require('bcryptjs');
+
 
                 try {
                     await connectMongoDB();
@@ -84,6 +86,8 @@ export default {
             credentials: {},
             async authorize(credentials) {
                 const { email, password } = credentials;
+                const bcrypt = require('bcryptjs');
+
 
                 try {
                     await connectMongoDB();
