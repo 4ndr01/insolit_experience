@@ -72,4 +72,44 @@ const authOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-export default NextAuth(authOptions);
+export default {
+    secret: 'mysecret',
+    providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_ID,
+            clientSecret: process.env.GOOGLE_SECRET,
+        }),
+        CredentialsProvider({
+            name: "credentials",
+            credentials: {},
+            async authorize(credentials) {
+                const { email, password } = credentials;
+
+                try {
+                    await connectMongoDB();
+                    let user = null;
+                    const client = await User.findOne({ email });
+
+                    if (client) {
+                        user = client;
+                    }
+
+                    if (!user) {
+                        return null;
+                    }
+
+                    const passwordsMatch = await bcrypt.compare(password, user.password);
+                    if (!passwordsMatch) {
+                        return null;
+                    }
+
+                    return user;
+                } catch (error) {
+                    console.log("Error: ", error);
+                    return null;
+                }
+            },
+        }),
+    ],
+};
+
