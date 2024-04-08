@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "/models/user";
-import bcrypt from 'bcrypt'; // Assurez-vous d'importer correctement bcrypt
 import connectMongoDB from "/lib/mongodb";
 
 const authOptions = {
@@ -52,6 +51,7 @@ const authOptions = {
         signIn: "/", // Chemin de la page de connexion
     },
 
+
     callbacks: {
 
         async jwt({ token, user }) {
@@ -70,6 +70,7 @@ const authOptions = {
     },
 };
 const handler = NextAuth(authOptions);
+
 
 export { handler as GET, handler as POST };
 export default NextAuth(authOptions);
