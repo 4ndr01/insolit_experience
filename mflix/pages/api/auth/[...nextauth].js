@@ -84,7 +84,6 @@ export default {
             credentials: {},
             async authorize(credentials) {
                 const { email, password } = credentials;
-                const bcrypt = require("bcrypt");
 
                 try {
                     await connectMongoDB();
