@@ -4,7 +4,7 @@ import connectMongoDB from "../../../lib/mongodb"
 import User from "../../../models/user";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import Travel from "../../../models/travel";
+import Commande from "../../../models/travel";
 
 export async function POST(request) {
     const { userId, retourDate, etat } = await request.json();
@@ -12,7 +12,6 @@ export async function POST(request) {
     try {
         await connectMongoDB();
 
-        // User ID'yi doğrula
         if (!mongoose.Types.ObjectId.isValid(userId)) {
             return NextResponse.json(
                 {
@@ -23,19 +22,17 @@ export async function POST(request) {
             );
         }
 
-        // Commande nesnesi oluştur
-        const travel = new Travel({
+        const commande = new Commande({
             user: userId,
             retourDate,
 
             etat,
         });
-        await travel.save();
+        await commande.save();
 
-        // Kullanıcıyı bul ve güncelle
         const user = await User.findById(userId);
         if (user) {
-            user.commande.push(travel._id); // 'commandes' alanı olduğunu varsayıyorum
+            user.commande.push(commande._id); // 'commandes' alanı olduğunu varsayıyorum
             await user.save();
 
             return NextResponse.json({
@@ -85,7 +82,7 @@ export async function GET(request) {
     try {
         await connectMongoDB();
 
-        const travel = await Travel.find();
+        const travel = await Commande.find();
 
         return NextResponse.json({
             success: true,
@@ -94,7 +91,6 @@ export async function GET(request) {
         });
     } catch (error) {
         console.error(error);
-        // Hata yönetimi
         if (error instanceof mongoose.Error.ValidationError) {
             let errorList = [];
             for (let e in error.errors) {

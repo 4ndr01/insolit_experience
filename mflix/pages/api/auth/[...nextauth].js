@@ -2,10 +2,10 @@ import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "/models/user";
+import bcrypt from 'bcrypt'; // Assurez-vous d'importer correctement bcrypt
 import connectMongoDB from "/lib/mongodb";
 
 const authOptions = {
-
     // Configure one or more authentication providers
     providers: [
         GoogleProvider({
@@ -17,8 +17,6 @@ const authOptions = {
             credentials: {},
             async authorize(credentials) {
                 const { email, password } = credentials;
-                const bcrypt = require('bcryptjs');
-
 
                 try {
                     await connectMongoDB();
@@ -59,6 +57,7 @@ const authOptions = {
         async jwt({ token, user }) {
             if (user) {
                 token.role = user.role;
+                token.commande = user.commande;
             }
             return token;
         },
@@ -66,6 +65,7 @@ const authOptions = {
             if (session?.user) {
                 session.user.role = token.role;
                 session.user.userId = token.sub;
+                session.user.commande = token.commande;
             }
             return session;
         },
@@ -74,46 +74,4 @@ const authOptions = {
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-export default {
-    secret: 'mysecret',
-    providers: [
-        GoogleProvider({
-            clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET,
-        }),
-        CredentialsProvider({
-            name: "credentials",
-            credentials: {},
-            async authorize(credentials) {
-                const { email, password } = credentials;
-                const bcrypt = require('bcryptjs');
-
-
-                try {
-                    await connectMongoDB();
-                    let user = null;
-                    const client = await User.findOne({ email });
-
-                    if (client) {
-                        user = client;
-                    }
-
-                    if (!user) {
-                        return null;
-                    }
-
-                    const passwordsMatch = await bcrypt.compare(password, user.password);
-                    if (!passwordsMatch) {
-                        return null;
-                    }
-
-                    return user;
-                } catch (error) {
-                    console.log("Error: ", error);
-                    return null;
-                }
-            },
-        }),
-    ],
-};
-
+export default NextAuth(authOptions);

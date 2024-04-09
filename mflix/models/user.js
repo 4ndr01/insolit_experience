@@ -25,10 +25,19 @@ const userSchema = new Schema(
             default: "user",
             required: true,
         },
+        imageFond: {
+            type: String,
+            default:
+                "https://cdn.pixabay.com/photo/2017/01/14/12/59/iceland-1979445_1280.jpg",
+        },
+
+        imageProfil: {
+            type: String,
+        },
         commande: [
             {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Travel",
+                ref: "Commande",
                 required: true,
             },
         ],

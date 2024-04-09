@@ -1,5 +1,5 @@
 import connectMongoDB from "../../../lib/mongodb";
-import Travel from "../../../models/travel";
+import Commande from "../../../models/travel";
 
 export default async function GET(req, res) {
     try {
@@ -8,10 +8,10 @@ export default async function GET(req, res) {
         const { userId } = req.query;
 
         // Trouver les commandes de l'utilisateur par son ID
-        const userCommands = await Travel.find({ user: userId });
+        const userCommands = await Commande.find({ userId: userId });
 
         // Renvoyer les commandes de l'utilisateur en format JSON
-        return res.status(200).json({ travel: userCommands});
+        return res.status(200).json({ commande: userCommands });
     } catch (error) {
         console.error(error);
         return res.status(500).json({

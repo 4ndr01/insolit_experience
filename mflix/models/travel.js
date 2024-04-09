@@ -1,48 +1,45 @@
-
-
 import mongoose from 'mongoose';
 
-let Travel;
+let Commande;
 
 try {
   // Tentez de récupérer le modèle s'il existe déjà
-  Travel = mongoose.model('Travel');
+  Commande = mongoose.model('Travel');
 } catch (e) {
   // Si le modèle n'existe pas, créez-le
-    const travelSchema = new mongoose.Schema({
-      destination: {
-        type: String,
-        required: false,
-      },
-      departDate: {
-        type: Date,
-        required: false,
-      },
-      retourDate: {
-        type: Date,
-        required: false,
-      },
-      nombrePersonnes: {
-        type: String,
-        required: false,
-      },
-      userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-      }
-    });
+  const commandeSchema = new mongoose.Schema({
+    destination: {
+      type: String,
+      required: false,
+    },
+    departDate: {
+      type: Date,
+      required: false,
+    },
+    retourDate: {
+      type: Date,
+      required: false,
+    },
+    nombrePersonnes: {
+      type: String,
+      required: false,
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    }
+  });
 
-  travelSchema.pre(/^find/, function (next) {
+  commandeSchema.pre(/^find/, function (next) {
     this.populate({
-      path: "user",
-      select: "name email _id ",
+      path: "userId", // Mettez à jour le chemin pour correspondre à votre schéma
+      select: "name email _id",
     });
-
     next();
   });
-    Travel = mongoose.model('Travel', travelSchema);
+
+  Commande = mongoose.model('Travel', commandeSchema);
 }
 
-export default Travel;
-
+export default Commande
