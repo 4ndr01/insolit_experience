@@ -4,11 +4,8 @@ import Loading from "../components/loading";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import Image from "next/image";
 
-// Define the Main component
 export default function NavComponent() {
-    // Initialize necessary hooks and variables
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const { data: session } = useSession(); // Retrieve user session
@@ -40,12 +37,13 @@ export default function NavComponent() {
 
     return (
         <>
-            {loading && <Loading />} {/* Display loading component when loading is true */}
+            {loading && <Loading />}
             <div className="py-3 px-4 md:px-6 lg:px-8 xl:px-10 h-20">
                 <div className="container mx-auto flex items-center justify-between h-12 ml-22">
-                    <Link href="/">
-                        <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300">Accueil</p>
+                    <Link href={"/"}>
+                        <img src="logo.svg" alt="logo" className="h-20 w-20 cursor-pointer" />
                     </Link>
+
                     <Link href="/contact/contact">
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300">Idées de séjour</p>
                     </Link>

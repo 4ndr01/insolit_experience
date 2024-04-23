@@ -34,6 +34,70 @@ module.exports = {
         'h-75': '18.75rem',
 
       },
+     mt: {
+        '1/2': '50%',
+
+      },
+      padding: {
+        '1/2': '50%',
+      },
+      margin: {
+        '1/2': '50%',
+      },
+      inset: {
+        '1/2': '50%',
+      },
+      zIndex: {
+        '-1': '-1',
+      },
+      boxShadow: {
+        'inner-lg': 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)',
+      },
+      backgroundImage: {
+        'hero-pattern': "url('/images/hero-pattern.svg')",
+        'footer-texture': "url('/images/footer-texture.svg')",
+      },
+      backgroundSize: {
+        'auto': 'auto',
+        'cover': 'cover',
+        'contain': 'contain',
+        '50%': '50%',
+        '16': '4rem',
+      },
+      backgroundPosition: {
+        'center': 'center',
+        'top': 'top',
+        'right': 'right',
+      },
+      backgroundRepeat: {
+        'no-repeat': 'no-repeat',
+      },
+      fontSize: {
+        '7xl': '5rem',
+      },
+      lineHeight: {
+        'extra-loose': '2.2',
+      },
+      letterSpacing: {
+        'widest': '.25em',
+      },
+      maxWidth: {
+        '8xl': '96rem',
+      },
+      minWidth: {
+        '1/2': '50%',
+      },
+      minHeight: {
+        '1/2': '50%',
+      },
+      maxHeight: {
+        '1/2': '50%',
+      },
+      screens: {
+        '3xl': '1600px',
+      },
+
+
     }
   },
 }

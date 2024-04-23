@@ -2,6 +2,9 @@
 const nextConfig = {
     experimental: {
         apiResolver: true,
+        images: {
+            domains: ['media.routard.com'], // Ajoutez le domaine ici
+        },
     },
 }
 

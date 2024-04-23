@@ -17,13 +17,19 @@ const userSchema = new Schema(
         },
         password: {
             type: String,
-            required: true,
+            required: function () {
+                return !this.isGoogleAccount;
+            },
         },
         role: {
             type: String,
             enum: ["user", "administrateur"],
             default: "user",
             required: true,
+        },
+        isGoogleAccount: {
+            type: Boolean,
+            default: false,
         },
         imageFond: {
             type: String,

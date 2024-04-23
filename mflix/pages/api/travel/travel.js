@@ -9,14 +9,6 @@ export default async function POST(request, response) {
     try {
         await connectMongoDB();
 
-        // Vérifiez l'ID utilisateur
-        if (!mongoose.Types.ObjectId.isValid(userId)) {
-            response.status(400).json({
-                success: false,
-                message: "ID utilisateur invalide.",
-            });
-            return;
-        }
 
         const travel = new Travel({
             destination,

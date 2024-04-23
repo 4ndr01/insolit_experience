@@ -1,3 +1,4 @@
+"use client";
 import { signOut, useSession } from "next-auth/react";
 import NavComponent from "../../components/nav";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
     const [userCommands, setUserCommands] = useState([]);
+    const [image, setImage] = useState(null);
 
     useEffect(() => {
         if (user && user.userId) {
@@ -25,6 +27,9 @@ const Profile = () => {
             const data = await response.json();
             setUserData(data);
             setUserCommands(data.commande);
+            setImage(data.imageFond);
+
+
         } catch (error) {
             setError(error.message);
         }
@@ -46,13 +51,13 @@ const Profile = () => {
                     <h1 className="text-4xl font-bold text-center mb-8">Profile</h1>
                     <div className="flex items-center justify-center">
                         <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full overflow-hidden">
-                            <img src={user?.image} alt="profile" className="w-full h-full object-cover" />
+                            <img src={image?.imageFond} alt="profile" className="w-full h-full object-cover" />
                         </div>
                         <div className="ml-4">
                             <h1 className="text-2xl font-bold">{user?.name}</h1>
                             <p className="text-lg text-gray-500">{user?.email}</p>
                             <p className="text-lg text-gray-500">Rôle : {user?.role}</p>
-                            <p className="text-lg text-gray-500">Vos voyages :</p>
+                            <p className="text-2xl font-bold">Vos voyages :</p>
                             <ul className="text-lg text-gray-500">
                                 {userCommands.map((commande, index) => (
                                     <li key={index} className="mt-4 border-b pb-4">

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router"; // Utilisation de useRouter au lieu de next/navigation
 import { useSession } from "next-auth/react";
-
+import NavComponent from "../../components/nav";
 // Définition du composant MontageForm
 const MontageForm = () => {
     // États locaux
@@ -80,6 +80,8 @@ const MontageForm = () => {
 
     // Rendu du composant
     return (
+        <>
+        <NavComponent />
         <div className="container">
             <h1>Créer un montage</h1>
             <form onSubmit={submit}>
@@ -131,6 +133,7 @@ const MontageForm = () => {
                 </button>
             </form>
         </div>
+    </>
     );
 };
 
