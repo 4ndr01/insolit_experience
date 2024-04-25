@@ -7,28 +7,25 @@ import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import NavComponent from "../components/nav.jsx";
-import VoyagesList from "../components/voyages/list_voyage";
+import VoyagesList from "../components/voyages/list_voyageComponent";
+import News from "../components/voyages/newsComponent";
+import Packs from "../components/voyages/packs";
 
 // Define the Main component
 const Main = () => {
 
     return(
         <>
-        <NavComponent/>
-        <div className="flex flex-col items-center justify-center h-screen">
+            <NavComponent/>
 
-            <VoyagesList/>
-        </div>
+            <section className="flex flex-col items-center justify-center" style={{ flexDirection: "column" }}>
+                <VoyagesList/>
+                <News/>
+                <Packs/>
 
-
-
+            </section>
         </>
-
     )
 }
 
 export default Main;
-
-
-
-

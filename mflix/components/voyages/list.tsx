@@ -10,10 +10,10 @@ const Voyages = [
     },
     {
         id: 2,
-        name: "Calque1.png",
+        name: "Calque2.png",
         content:
             "Découvrez l'Espagne et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Espagne.",
-        image: "/Frame 38.svg",
+        image: "/Frame 33.svg",
         price: 2000,
     },
     {
@@ -29,7 +29,7 @@ const Voyages = [
         name: "Voyage en Allemagne",
         content:
             "Découvrez l'Allemagne et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Allemagne.",
-        image: "/Calque1.png",
+        image: "/Frame 33.svg",
         price: 3000,
     },
     {
@@ -37,7 +37,7 @@ const Voyages = [
         name: "Voyage en Angleterre",
         content:
             "Découvrez l'Angleterre et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Angleterre.",
-        image: "/Calque1.png",
+        image: "/Frame 33.svg",
         price: 3500,
     },
     {
@@ -45,7 +45,7 @@ const Voyages = [
         name: "Voyage en Suisse",
         content:
             "Découvrez la Suisse et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Suisse.",
-        image: "/Calque1.png",
+        image: "/Frame 33.svg",
         price: 4000,
     },
 ];

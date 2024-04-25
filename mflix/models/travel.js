@@ -28,7 +28,11 @@ try {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true
-    }
+    },
+    image: {
+      type: String,
+      required: false,
+    },
   });
 
   commandeSchema.pre(/^find/, function (next) {

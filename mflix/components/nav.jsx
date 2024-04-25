@@ -4,6 +4,7 @@ import Loading from "../components/loading";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
+import Logo from "../public/logo.svg";
 
 export default function NavComponent() {
     const router = useRouter();
@@ -41,7 +42,7 @@ export default function NavComponent() {
             <div className="py-3 px-4 md:px-6 lg:px-8 xl:px-10 h-20">
                 <div className="container mx-auto flex items-center justify-between h-12 ml-22">
                     <Link href={"/"}>
-                        <img src="logo.svg" alt="logo" className="h-20 w-20 cursor-pointer" />
+                        <img src="/logo.svg" alt="logo" className="h-20 w-20 cursor-pointer" /> {/* Utilisation du logo importé */}
                     </Link>
 
                     <Link href="/contact/contact">

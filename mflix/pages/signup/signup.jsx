@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from "next/link";
 import {signIn} from "next-auth/react";
 import { useRouter } from 'next/router';
+import NavComponent from "../../components/nav";
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -69,80 +70,80 @@ const Register = () => {
     };
 
     return (
-    <section className="flex flex-col items-center h-screen md:flex-row">
-        <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl text-center mb-4">Inscription</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                    <label htmlFor="email" className="block text-sm font-medium text-red">
-                        Adresse email
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="mt-1 p-2 w-full border rounded-md"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="name" className="block text-sm font-medium text-red">
-                        Nom
-                    </label>
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="mt-1 p-2 w-full border rounded-md"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="password" className="block text-sm font-medium text-red">
-                        Mot de passe
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        className="mt-1 p-2 w-full border rounded-md"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="confirmPassword" className="block text-sm font-medium text-red">
-                        Confirmer le mot de passe
-                    </label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        className="mt-1 p-2 w-full border rounded-md"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                </div>
-                {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-                <button
-                    type="submit"
-                    className="w-full bg-black text-white p-2 rounded-md"
-                >
-                    S'inscrire
-                </button>
-            </form>
+        <>
+        <NavComponent/>
 
-        </div>
-        <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-2xl text-center mb-4">Connexion avec Google</h2>
-            <button
-                onClick={() => {
-                    signIn("google", {callbackUrl: "http://localhost:3000"});
-                }}
-                className="mb-6 flex w-full items-center justify-center rounded-md bg-white p-3 text-base font-medium text-body-color shadow-one hover:text-primary dark:bg-[#242B51] dark:text-body-color dark:shadow-signUp dark:hover:text-white"
-            >
+    <body className="flex justify-center items-center min-h-screen" style={{background: 'linear-gradient(to right, #4CB4FF, #8474E4)'}}>
+
+            <section className="flex flex-col items-center justify-center h-screen md:flex-row mt-20 w-96 ">
+                <div className="max-w-md w-full p-6 bg-white rounded-lg shadow-md">
+                    <h2 className="text-2xl text-center mb-4">Inscription</h2>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="mb-4">
+                            <label htmlFor="email" className="block text-sm font-medium text-red">
+                                Adresse email
+                            </label>
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="name" className="block text-sm font-medium text-red">
+                                Nom
+                            </label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="password" className="block text-sm font-medium text-red">
+                                Mot de passe
+                            </label>
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="confirmPassword" className="block text-sm font-medium text-red">
+                                Confirmer le mot de passe
+                            </label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                className="mt-1 p-2 w-full border rounded-md"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </div>
+                        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+                        <button
+                            type="submit"
+                            className="w-full bg-black text-white p-2 rounded-md"
+                        >
+                            S'inscrire
+                        </button>
+                        <button
+                            onClick={() => {
+                                signIn("google", {callbackUrl: "http://localhost:3000"});
+                            }}
+                            className="mb-6 flex w-full items-center justify-center rounded-md bg-white p-3 text-base font-medium text-body-color shadow-one hover:text-primary dark:bg-[#242B51] dark:text-body-color dark:shadow-signUp dark:hover:text-white"
+                        >
                 <span className="mr-3">
                   <svg
                       width="20"
@@ -176,11 +177,17 @@ const Register = () => {
                     </defs>
                   </svg>
                 </span>
-                Connectez-vous via Google
-            </button>
-        </div>
+                            Connectez-vous via Google
+                        </button>
+                    </form>
 
-    </section>
+                </div>
+
+
+            </section>
+    </body>
+        </>
+
     );
 };
 

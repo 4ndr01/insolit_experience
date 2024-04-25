@@ -24,11 +24,12 @@ const VoyagesList = () => {
 
     return (
         <div className="relative mt-20">
-            <div className="flex justify-center items-center">
+            <h2 className="text-3xl font-bold ml-15 mb-5">Pour vous</h2>
+            <div className="flex justify-center items-center overflow-x-scroll scrollbar-hide">
                 <button onClick={prevGroup} className="mr-4">
-                    <FiChevronLeft size={24} />
+                    <FiChevronLeft size={24}/>
                 </button>
-                <div className="flex gap-4">
+                <div className="flex gap-4" style={{ scrollBehavior: "smooth" }}>
                     {Voyages.slice(activeGroup * groupSize, (activeGroup + 1) * groupSize).map((voyage, index) => (
                         <div
                             key={voyage.id}
@@ -36,7 +37,7 @@ const VoyagesList = () => {
                             onMouseLeave={() => setHoveredItem(null)}
                             className={`relative ${hoveredItem === index ? 'scale-110' : 'scale-100'} transition-all duration-300`}
                         >
-                            <Image src={voyage.image} alt={voyage.name} width={400} height={400} />
+                            <Image src={voyage.image} alt={voyage.name} width={400} height={400} className="rounded-lg"/>
                             <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100 flex justify-center items-center">
                                 <p className="text-white">{voyage.name}</p>
                             </div>
@@ -44,11 +45,11 @@ const VoyagesList = () => {
                     ))}
                 </div>
                 <button onClick={nextGroup} className="ml-4">
-                    <FiChevronRight size={24} />
+                    <FiChevronRight size={24}/>
                 </button>
             </div>
             <div className="flex justify-center mt-4">
-                {Array.from({ length: totalGroups }, (_, index) => (
+                {Array.from({length: totalGroups}, (_, index) => (
                     <button
                         key={index}
                         onClick={() => goToGroup(index)}
