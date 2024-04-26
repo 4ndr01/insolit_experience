@@ -6,7 +6,10 @@ import connectMongoDB from "/lib/mongodb";
 
 const bcrypt = require('bcrypt');
 
+
+
 const authOptions = {
+    secret: 'root',
     // Configure one or more authentication providers
     providers: [
         GoogleProvider({
@@ -50,7 +53,6 @@ const authOptions = {
     session: {
         strategy: "jwt",
     },
-    secret: process.env.NEXTAUTH_SECRET, // Assurez-vous que cette clé est correctement configurée dans votre environnement
     pages: {
         signIn: "/", // Chemin de la page de connexion
     },
