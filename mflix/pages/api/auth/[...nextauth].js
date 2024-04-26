@@ -2,8 +2,9 @@ import NextAuth from "next-auth";
 import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "/models/user";
-import bcrypt from 'bcrypt'; // Assurez-vous d'importer correctement bcrypt
 import connectMongoDB from "/lib/mongodb";
+
+const bcrypt = require('bcrypt');
 
 const authOptions = {
     // Configure one or more authentication providers
