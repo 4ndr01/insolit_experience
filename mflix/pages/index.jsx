@@ -1,31 +1,28 @@
-// Import necessary modules and components
-import Link from "next/link";
 import 'tailwindcss/tailwind.css';
-import Loading from "../components/loading";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useSession, signOut } from "next-auth/react";
-import Image from "next/image";
 import NavComponent from "../components/nav.jsx";
 import VoyagesList from "../components/voyages/list_voyageComponent";
 import News from "../components/voyages/newsComponent";
 import Packs from "../components/voyages/packs";
+import SearchBarWithVoyagesList from "../components/searchbar";
+import Voyages from "../components/voyages/list";
+import Footer from "../components/footer";
 
-// Define the Main component
 const Main = () => {
-
-    return(
+    return (
         <>
-            <NavComponent/>
+            <NavComponent />
 
-            <section className="flex flex-col items-center justify-center" style={{ flexDirection: "column" }}>
-                <VoyagesList/>
-                <News/>
-                <Packs/>
-
-            </section>
+            <div className="min-h-screen" style={{ background: 'linear-gradient( #8474E4,#4CB4FF )' }}>
+                <section className="container mx-auto p-4">
+                    <SearchBarWithVoyagesList voyages={Voyages} />
+                    <VoyagesList />
+                    <News />
+                    <Packs />
+                </section>
+                <Footer />
+            </div>
         </>
-    )
+    );
 }
 
 export default Main;

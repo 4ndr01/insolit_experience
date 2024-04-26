@@ -2,9 +2,10 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router"; // Utilisation de useRouter au lieu de next/navigation
 import { useSession } from "next-auth/react";
-import NavComponent from "../../components/nav";
+import Voyages from "../../components/voyages/list";
+
 // Définition du composant MontageForm
-const MontageForm = () => {
+const MontageForm = ({id}) => {
     // États locaux
     const [destination, setDestination] = useState('');
     const [departDate, setDepartDate] = useState('');
@@ -16,6 +17,8 @@ const MontageForm = () => {
     const [isFormValid, setIsFormValid] = useState(false);
     const { data: session } = useSession();
     const router = useRouter();
+    const voyage = Voyages.find(voyage => String(voyage.id) === id);
+
 
     // Effet pour mettre à jour les données de session
     useEffect(() => {
@@ -25,6 +28,13 @@ const MontageForm = () => {
             setEmail(session.user.email || "");
         }
     }, [session]);
+
+    useEffect(() => {
+        if (voyage) {
+            setDestination(voyage.name || '');
+        }
+    }, [voyage]);
+
 
     // Fonction pour nettoyer l'entrée
     const sanitizeInput = (input) => {
@@ -81,7 +91,6 @@ const MontageForm = () => {
     // Rendu du composant
     return (
         <>
-        <NavComponent />
         <div className="container">
             <h1>Créer un montage</h1>
             <form onSubmit={submit}>

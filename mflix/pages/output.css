@@ -1010,3 +1010,16 @@ video {
 .mt-20{
   margin-top: 5rem;
 }
+
+
+.mr-20{
+  margin-top: 5rem;
+}
+
+.bg-blue-900 {
+  background-color: #0C359E;
+}
+
+.w-full {
+  width: 100%;
+}

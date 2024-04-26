@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Voyages from "./list";
+import Link from "next/link";
 
 const VoyagesList = () => {
     const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -30,17 +31,19 @@ const VoyagesList = () => {
                     <FiChevronLeft size={24}/>
                 </button>
                 <div className="flex gap-4" style={{ scrollBehavior: "smooth" }}>
-                    {Voyages.slice(activeGroup * groupSize, (activeGroup + 1) * groupSize).map((voyage, index) => (
+                    {Voyages.slice(activeGroup * groupSize, (activeGroup + 1) * groupSize).map((voyage) => (
                         <div
                             key={voyage.id}
-                            onMouseEnter={() => setHoveredItem(index)}
-                            onMouseLeave={() => setHoveredItem(null)}
-                            className={`relative ${hoveredItem === index ? 'scale-110' : 'scale-100'} transition-all duration-300`}
+                            className="relative"
                         >
-                            <Image src={voyage.image} alt={voyage.name} width={400} height={400} className="rounded-lg"/>
-                            <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100 flex justify-center items-center">
-                                <p className="text-white">{voyage.name}</p>
-                            </div>
+                            <Link href={`/voyage/${voyage.id}`}>
+
+                                    <Image src={voyage.image} alt={voyage.name} width={400} height={400} className="rounded-lg" />
+                                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100 flex justify-center items-center">
+                                        <p className="text-white">{voyage.name}</p>
+                                    </div>
+
+                            </Link>
                         </div>
                     ))}
                 </div>
@@ -49,7 +52,7 @@ const VoyagesList = () => {
                 </button>
             </div>
             <div className="flex justify-center mt-4">
-                {Array.from({length: totalGroups}, (_, index) => (
+                {Array.from({ length: totalGroups }, (_, index) => (
                     <button
                         key={index}
                         onClick={() => goToGroup(index)}

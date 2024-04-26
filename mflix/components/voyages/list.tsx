@@ -18,7 +18,7 @@ const Voyages = [
     },
     {
         id: 3,
-        name: "Voyage en France",
+        name: "Paris",
         content:
             "Découvrez la France et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en France.",
         image: "/Frame 33.svg",
@@ -26,7 +26,7 @@ const Voyages = [
     },
     {
         id: 4,
-        name: "Voyage en Allemagne",
+        name: "Dublin",
         content:
             "Découvrez l'Allemagne et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Allemagne.",
         image: "/Frame 33.svg",
@@ -34,7 +34,7 @@ const Voyages = [
     },
     {
         id: 5,
-        name: "Voyage en Angleterre",
+        name: "Londres",
         content:
             "Découvrez l'Angleterre et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Angleterre.",
         image: "/Frame 33.svg",
@@ -42,7 +42,7 @@ const Voyages = [
     },
     {
         id: 6,
-        name: "Voyage en Suisse",
+        name: "Suisse",
         content:
             "Découvrez la Suisse et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Suisse.",
         image: "/Frame 33.svg",
