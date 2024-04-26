@@ -1,4 +1,3 @@
-"use client";
 import { signOut, useSession } from "next-auth/react";
 import NavComponent from "../../components/nav";
 import { useEffect, useState } from "react";
@@ -28,8 +27,6 @@ const Profile = () => {
             setUserData(data);
             setUserCommands(data.commande);
             setImage(data.imageFond);
-
-
         } catch (error) {
             setError(error.message);
         }
@@ -46,33 +43,41 @@ const Profile = () => {
     return (
         <>
             <NavComponent />
-            <section className="bg-white py-20">
-                <div className="container mx-auto">
-                    <h1 className="text-4xl font-bold text-center mb-8">Profile</h1>
-                    <div className="flex items-center justify-center">
-                        <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full overflow-hidden">
-                            <img src={image?.imageFond} alt="profile" className="w-full h-full object-cover" />
-                        </div>
-                        <div className="ml-4">
-                            <h1 className="text-2xl font-bold">{user?.name}</h1>
-                            <p className="text-lg text-gray-500">{user?.email}</p>
-                            <p className="text-lg text-gray-500">Rôle : {user?.role}</p>
-                            <p className="text-2xl font-bold">Vos voyages :</p>
-                            <ul className="text-lg text-gray-500">
-                                {userCommands.map((commande, index) => (
-                                    <li key={index} className="mt-4 border-b pb-4">
-                                        <p className="mb-2">Destination: {commande.destination}</p>
-                                        <p className="mb-2">Date de départ: {formatDate(commande.departDate)}</p>
-                                        <p className="mb-2">Date de retour: {formatDate(commande.retourDate)}</p>
-                                        <p className="mb-2">Nombre de personnes: {commande.nombrePersonnes}</p>
-                                    </li>
-                                ))}
-
-                            </ul>
-                        </div>
+            <body style={{background: 'linear-gradient( #8474E4,#4CB4FF )', height: '100vh', overflow: 'auto'}}>
+            <div className="container mx-auto bg mt-20 flex flex-col items-center justify-center">
+                <div className="flex items-center justify-center">
+                    <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full overflow-hidden">
+                        <img src={image?.imageFond} alt="profile" className="w-full h-full object-cover"/>
+                    </div>
+                    <div className="ml-4 bg-white rounded-full p-4">
+                        <h1 className="text-2xl font-bold">Pseudo: {user?.name}</h1>
+                        <p className="text-lg text-gray-500">Email: {user?.email}</p>
+                        <p className="text-lg text-gray-500">Rôle : {user?.role}</p>
                     </div>
                 </div>
-            </section>
+            </div>
+
+            {/* Section des voyages */}
+            <div className="container mx-auto mt-8 px-4">
+                <h2 className="text-3xl font-bold mb-4">Vos voyages :</h2>
+                <ul className="grid gap-4">
+                    {userCommands.length === 0 ? (
+                        <p>Chargement en cours...</p>
+                    ) : (
+                        <ul className="grid gap-4">
+                            {userCommands.map((commande, index) => (
+                                <li key={index} className="bg-white p-4 rounded-md shadow-md mt-20">
+                                    <p className="text-lg font-bold">Destination: {commande.destination}</p>
+                                    <p>Date de départ: {formatDate(commande.departDate)}</p>
+                                    <p>Date de retour: {formatDate(commande.retourDate)}</p>
+                                    <p>Nombre de personnes: {commande.nombrePersonnes}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </ul>
+            </div>
+            </body>
         </>
     );
 };

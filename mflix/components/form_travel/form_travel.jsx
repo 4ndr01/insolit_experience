@@ -138,7 +138,7 @@ const MontageForm = ({id}) => {
                     className="w-full p-2 border border-gray-300 rounded-md"
                 />
                 <button type="submit" className="mt-4 w-full bg-primary text-white p-3 rounded-md">
-                    Créer le montage
+                    Réserver maintenant
                 </button>
             </form>
         </div>

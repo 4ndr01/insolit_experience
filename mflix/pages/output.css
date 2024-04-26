@@ -1023,3 +1023,32 @@ video {
 .w-full {
   width: 100%;
 }
+
+.rounded-full {
+  border-radius: 2rem;
+}
+
+/* Styles CSS */
+.list-item {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.list-item:hover {
+  opacity: 0.8;
+}
+
+/* Styles CSS */
+.list-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+.list-item:hover {
+  transform: scale(1.05);
+}
+
+/* Styles CSS */
+.container {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
