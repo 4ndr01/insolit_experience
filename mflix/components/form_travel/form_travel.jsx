@@ -137,7 +137,7 @@ const MontageForm = ({id}) => {
                     onChange={(e) => setNombrePersonnes(e.target.value)}
                     className="w-full p-2 border border-gray-300 rounded-md"
                 />
-                <button type="submit" className="mt-4 w-full bg-primary text-white p-3 rounded-md">
+                <button type="submit" className="mt-4 w-full bg-primary text-white p-3 rounded-md button">
                     Réserver maintenant
                 </button>
             </form>

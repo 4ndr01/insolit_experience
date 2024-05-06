@@ -51,8 +51,11 @@ export default function NavComponent() {
                     <Link href="/form_travel/form_travel">
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300">Logement</p>
                     </Link>
-                    <Link href="/contact/contact">
+                    <Link href="/testPanier/test">
                         <p className="text-blacktext-lg font-bold hover:opacity-80 transition duration-300">Activités</p>
+                    </Link>
+                    <Link href="/panier/panier">
+                        <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300">Panier</p>
                     </Link>
                     {session ? (
                         <button

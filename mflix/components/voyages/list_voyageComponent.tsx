@@ -5,7 +5,6 @@ import Voyages from "./list";
 import Link from "next/link";
 
 const VoyagesList = () => {
-    const [hoveredItem, setHoveredItem] = useState<number | null>(null);
     const [activeGroup, setActiveGroup] = useState(0);
 
     const groupSize = 3; // Nombre d'images à afficher dans chaque groupe
@@ -34,13 +33,12 @@ const VoyagesList = () => {
                     {Voyages.slice(activeGroup * groupSize, (activeGroup + 1) * groupSize).map((voyage) => (
                         <div
                             key={voyage.id}
-                            className="relative"
+                            className="relative ml-4 image"
                         >
                             <Link href={`/voyage/${voyage.id}`}>
 
                                     <Image src={voyage.image} alt={voyage.name} width={400} height={400} className="rounded-lg" />
                                     <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100 flex justify-center items-center">
-                                        <p className="text-white">{voyage.name}</p>
                                     </div>
 
                             </Link>

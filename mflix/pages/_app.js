@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SessionProvider } from "next-auth/react"
 import { UserProvider } from '../context/userContext';
 
+
 function MyApp({ Component, pageProps }) {
 
     return (

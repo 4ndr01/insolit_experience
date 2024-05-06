@@ -2,6 +2,8 @@ import { signOut, useSession } from "next-auth/react";
 import NavComponent from "../../components/nav";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
+import Image from "next/image";
+import Voyages from "../../components/voyages/list";
 
 const Profile = () => {
     const { data: session } = useSession();
@@ -66,7 +68,7 @@ const Profile = () => {
                     ) : (
                         <ul className="grid gap-4">
                             {userCommands.map((commande, index) => (
-                                <li key={index} className="bg-white p-4 rounded-md shadow-md mt-20">
+                                <li key={index} className="bg-white p-4  shadow-md mt-20 image rounded-md">
                                     <p className="text-lg font-bold">Destination: {commande.destination}</p>
                                     <p>Date de départ: {formatDate(commande.departDate)}</p>
                                     <p>Date de retour: {formatDate(commande.retourDate)}</p>

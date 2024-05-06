@@ -20,7 +20,7 @@ const SearchBarWithVoyagesList: React.FC<{ voyages: any[] }> = ({ voyages }) => 
                 <input
                     type="text"
                     placeholder="Rechercher un voyage"
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                    className="px-4 py-2 border  rounded-lg focus:outline-none focus:ring focus:border-blue-300 w-96 h-12 text-black"
                     value={searchQuery}
                     onChange={(e) => handleSearch(e.target.value)}
                 />

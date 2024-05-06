@@ -36,12 +36,11 @@ const News=()=>{
                                 key={voyage.id}
                                 onMouseEnter={() => setHoveredItem(index)}
                                 onMouseLeave={() => setHoveredItem(null)}
-                                className={`relative ${hoveredItem === index ? 'scale-110' : 'scale-100'} transition-all duration-300`}
+                                className={`relative ${hoveredItem === index ? 'scale-110' : 'scale-100'} transition-all duration-300 mr-4 image` }
                             >
-                                <Image src={voyage.image} alt={voyage.name} width={400} height={400}/>
+                                <Image src={voyage.image} alt={voyage.name} width={400} height={400} className="rounded-lg"/>
                                 <div
                                     className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100 flex justify-center items-center">
-                                    <p className="text-white">{voyage.name}</p>
                                 </div>
                             </div>
                         ))}

@@ -1052,3 +1052,35 @@ video {
   scroll-behavior: smooth;
 }
 
+.image {
+  transition: transform 0.3s ease-in-out;
+}
+
+.image:hover {
+  transform: scale(1.05);
+
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Ajoute une transition pour l'opacity */
+}
+
+.h-32 {
+  height: 8rem;
+}
+
+.button {
+  transition: transform 0.3s ease-in-out;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
