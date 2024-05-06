@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Voyages from "./list";
+import Link from "next/link";
 
 const News=()=>{
     const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -38,10 +39,12 @@ const News=()=>{
                                 onMouseLeave={() => setHoveredItem(null)}
                                 className={`relative ${hoveredItem === index ? 'scale-110' : 'scale-100'} transition-all duration-300 mr-4 image` }
                             >
+                                <Link href={`/voyage/${voyage.id}`}>
                                 <Image src={voyage.image} alt={voyage.name} width={400} height={400} className="rounded-lg"/>
                                 <div
                                     className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100 flex justify-center items-center">
                                 </div>
+                                </Link>
                             </div>
                         ))}
                     </div>

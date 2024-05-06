@@ -3,7 +3,6 @@ import NavComponent from "../../components/nav";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import Image from "next/image";
-import Voyages from "../../components/voyages/list";
 
 const Profile = () => {
     const { data: session } = useSession();
@@ -49,7 +48,7 @@ const Profile = () => {
             <div className="container mx-auto bg mt-20 flex flex-col items-center justify-center">
                 <div className="flex items-center justify-center">
                     <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full overflow-hidden">
-                        <img src={image?.imageFond} alt="profile" className="w-full h-full object-cover"/>
+                        <Image src={image?.imageFond} alt="profile" layout="responsive" width="100" height="100" />
                     </div>
                     <div className="ml-4 bg-white rounded-full p-4">
                         <h1 className="text-2xl font-bold">Pseudo: {user?.name}</h1>

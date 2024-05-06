@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router"; // Utilisation de useRouter au lieu de next/navigation
 import { useSession } from "next-auth/react";
 import Voyages from "../../components/voyages/list";
+import Success from "../../pages/success/success";
 
 // Définition du composant MontageForm
 const MontageForm = ({id}) => {
@@ -79,7 +80,7 @@ const MontageForm = ({id}) => {
             });
 
             if (response.ok) {
-                await router.push("/");
+                await router.push("/success/success");
             } else {
                 console.error("Échec de la soumission du formulaire");
             }

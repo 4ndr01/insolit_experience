@@ -1084,3 +1084,167 @@ video {
   transform: scale(1.05);
 }
 
+.mr-10 {
+  margin-right: 2.5rem;
+
+}
+
+.mr-14 {
+  margin-top: 3.5rem;
+}
+
+/* Définition du style pour l'élément avec la classe min-h-screen */
+.min-h-screen {
+  /* La hauteur minimale de l'élément est équivalente à 100% de la hauteur de l'écran */
+  min-height: 100vh; /* 100% de la hauteur de la vue (viewport height) */
+}
+
+.h-42 {
+  height: 10.5rem;
+}
+
+.h-64 {
+  height: 16rem;
+}
+
+.h-72 {
+  height: 18rem;
+}
+
+.h-96 {
+  height: 24rem;
+}
+
+.h-100 {
+  height: 25rem;
+}
+
+.h-120 {
+  height: 30rem;
+}
+
+.h-140 {
+  height: 35rem;
+}
+
+/* Styles pour les grands écrans (desktop) */
+.container {
+  max-width: 1200px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px; /* Ajuster la hauteur selon vos besoins */
+}
+
+.navbar img {
+  height: 60px;
+  width: 60px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: black;
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.8;
+}
+
+/* Styles pour les petits écrans (mobile) */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+
+
+.bg-blue-900 {
+  background-color: #0C359E;
+}
+
+.pt-4 {
+  padding-top: 1rem;
+}
+
+.pt-5 {
+  padding-top: 1.25rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pt-8 {
+  padding-top: 2rem;
+}
+
+.pt-10 {
+  padding-top: 2.5rem;
+}
+
+.pt-12 {
+  padding-top: 3rem;
+}
+
+.pt-14 {
+  padding-top: 3.5rem;
+}
+
+.pt-16 {
+  padding-top: 4rem;
+}
+
+.pt-30 {
+  padding-top: 7.5rem;
+}
+
+.w-200 {
+  width: 50rem;
+}
+
+.w-250 {
+  width: 62.5rem;
+}
+
+.w-300 {
+  width: 75rem;
+}
+
+.ml-2{
+  margin-left: 0.5rem;
+}
+
+.ml-3{
+  margin-left: 0.75rem;
+}
+
+.ml-4{
+  margin-left: 1rem;
+}
+
+
+

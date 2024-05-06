@@ -4,6 +4,8 @@ import '../components/activity.css';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SessionProvider } from "next-auth/react"
 import { UserProvider } from '../context/userContext';
+import '../pages/output.css';
+import { useTransition, animated } from '@react-spring/web'
 
 
 function MyApp({ Component, pageProps }) {
