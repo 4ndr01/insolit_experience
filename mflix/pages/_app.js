@@ -5,13 +5,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SessionProvider } from "next-auth/react"
 import { UserProvider } from '../context/userContext';
 import '../pages/output.css';
-import { useTransition, animated } from '@react-spring/web'
+import { Analytics } from "@vercel/analytics/react"
 
 
 function MyApp({ Component, pageProps }) {
 
     return (
         <div>
+            <Analytics id="analytics" />
         <SpeedInsights id="speed-insights" />
             <SessionProvider session={pageProps.session}>
             <UserProvider>
