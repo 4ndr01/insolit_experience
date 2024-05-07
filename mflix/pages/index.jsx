@@ -7,21 +7,18 @@ import SearchBarWithVoyagesList from "../components/searchbar";
 import Footer from "../components/footer";
 import Voyages from "../components/voyages/list";
 
-
 const Main = () => {
     return (
         <>
             <NavComponent />
 
-            <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)' }}>
+            <div className="min-h-screen bg-gradient-to-b from-purple-300 via-purple-400 to-blue-500 px-4 py-8 md:py-16" style={{ background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)' }}>
                 <section className="container mx-auto p-4">
                     <SearchBarWithVoyagesList voyages={Voyages} />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-
                             <VoyagesList />
                             <News />
-
                         </div>
                         <div>
                             <Packs />

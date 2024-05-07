@@ -5,7 +5,7 @@
     "@mui/material": "^5.15.6",
     "@mui/styled-engine-sc": "^6.0.0-alpha.13",
     "@types/moment": "^2.13.0",
-    "@vercel/speed-insights": "^1.0.9",
+    "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",

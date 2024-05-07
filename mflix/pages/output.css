@@ -1013,7 +1013,7 @@ video {
 
 
 .mr-20{
-  margin-top: 5rem;
+  margin-right: 5rem;
 }
 
 .bg-blue-900 {
@@ -1246,5 +1246,6 @@ video {
   margin-left: 1rem;
 }
 
-
-
+.container {
+  @apply mx-auto;
+}

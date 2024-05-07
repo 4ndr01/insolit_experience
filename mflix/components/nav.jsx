@@ -34,10 +34,10 @@ export default function NavComponent() {
     return (
         <>
             {loading && <Loading />}
-            <div className="py-3 px-4 md:px-6 lg:px-8 xl:px-10 h-20">
-                <div className="container mx-auto flex items-center justify-between h-12 ml-22">
+            <nav className="md:px-6 lg:px-8 xl:px-10">
+                <div className="container flex items-center justify-between">
                     <Link href="/">
-                        <img src="/logo.svg" alt="logo" className="h-20 w-20 cursor-pointer" />
+                        <img src="/logo.svg" alt="logo" className="h-20 w-20 cursor-pointer " />
                     </Link>
 
                     <Link href="/contact/contact">
@@ -74,7 +74,7 @@ export default function NavComponent() {
                         </Link>
                     )}
                 </div>
-            </div>
+            </nav>
         </>
     );
 }
