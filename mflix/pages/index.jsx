@@ -7,6 +7,7 @@ import SearchBarWithVoyagesList from "../components/searchbar";
 import Footer from "../components/footer";
 import Voyages from "../components/voyages/list";
 import Image from "next/image";
+import ScrollToTop from "../components/scrollToTop";
 
 const Main = () => {
     return (
@@ -26,6 +27,8 @@ const Main = () => {
                             <Packs />
                         </div>
                     </div>
+                    <ScrollToTop />
+
                 </section>
                 <Footer />
             </div>
