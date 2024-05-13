@@ -143,6 +143,21 @@ const MontageForm = ({id}) => {
                 </button>
             </form>
         </div>
+
+            <style jsx>{`
+                button {
+                    cursor: pointer;
+                    background-color: rgb(74 108 247);
+                }
+
+                .button {
+                    cursor: pointer;
+                }
+
+                .button:hover {
+                    background-color: rgb(74 108 247);
+                }
+            `}</style>
     </>
     );
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 
 const Footer = () => {
     return (
@@ -13,7 +14,7 @@ const Footer = () => {
 
                     <div className="w-1/3 text-center">
                         <h2 className="text-2xl font-bold text-white">Pour les professionnels</h2>
-                        <p className="mt-2 text-white">Nous contacter</p>
+                        <Link className="mt-2 text-white" href="/contact/contact">Nous contacter</Link>
                     </div>
 
                     <div className="w-1/3 text-right">
