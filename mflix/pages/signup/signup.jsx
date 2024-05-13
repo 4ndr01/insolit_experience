@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import NavComponent from '../../components/nav';
-
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -14,12 +13,20 @@ const Register = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Vérifications et gestion de l'inscription
-        // ...
+        if (password !== confirmPassword) {
+            setError('Les mots de passe ne correspondent pas');
+            return;
+        }
 
         try {
-            // Requête d'inscription
-            // ...
+            const response = await fetch('/api/signup/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, name, password }),
+            });
+
 
             if (response.ok) {
                 // Réinitialisation des champs et redirection après inscription réussie
@@ -102,7 +109,7 @@ const Register = () => {
                             />
                         </div>
                         {error && <p className="text-red-500 text-sm">{error}</p>}
-                        <button type="submit" className="w-full text-white p-2 rounded-md mt-4 bg-primary">
+                        <button type="submit" className="w-full bg-black text-white p-2 rounded-md mt-1">
                             S'inscrire
                         </button>
                         <button

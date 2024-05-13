@@ -3,7 +3,6 @@ import NavComponent from "../../components/nav";
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import Image from "next/image";
-
 const Profile = () => {
     const { data: session } = useSession();
     const user = session?.user;
@@ -11,6 +10,7 @@ const Profile = () => {
     const [error, setError] = useState(null);
     const [userCommands, setUserCommands] = useState([]);
     const [image, setImage] = useState(null);
+    const [users, setUsers] = useState({});
 
     useEffect(() => {
         if (user && user.userId) {
@@ -47,8 +47,8 @@ const Profile = () => {
             <body style={{background: 'linear-gradient( #8474E4,#4CB4FF )', height: '100vh', overflow: 'auto'}}>
             <div className="container mx-auto bg mt-20 flex flex-col items-center justify-center">
                 <div className="flex items-center justify-center">
-                    <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full overflow-hidden">
-                        <Image src={image?.imageFond} alt="profile" layout="responsive" width="100" height="100" />
+                    <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-lg overflow-hidden">
+                        <Image src={users?.imageFond} alt="profile" layout="responsive" width="100" height="100" />
                     </div>
                     <div className="ml-4 bg-white rounded-lg p-4">
                         <h1 className="text-2xl font-bold">Pseudo: {user?.name}</h1>
@@ -68,7 +68,7 @@ const Profile = () => {
                         <ul className="grid gap-4">
                             {userCommands.map((commande, index) => (
                                 <li key={index} className="bg-white p-4  shadow-md mt-20 image rounded-md">
-                                    <img src={commande.image} alt={commande.destination} className="   rounded-md" style={{height: '400px'}} />
+                                    <img src={commande.image} alt={commande.destination} className=" h-auto object-cover rounded-md" style={{height: '300px'}} />
                                     <p className="text-lg font-bold">Destination: {commande.destination}</p>
                                     <p>Date de départ: {formatDate(commande.departDate)}</p>
                                     <p>Date de retour: {formatDate(commande.retourDate)}</p>

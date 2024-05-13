@@ -7,10 +7,10 @@ export default async function handler(req, res) {
 
   if (req.method === "POST") {
     try {
-      const { name, email, password } = await req.body;
+      const { name, email, password} = await req.body;
       const hashedPassword = await bcrypt.hash(password, 10);
       await connectMongoDB();
-      await User.create({ name, email, password: hashedPassword });
+      await User.create({ name, email, password: hashedPassword});
 
       res.status(200).json({ message: "User registered." });
     } catch (error) {
