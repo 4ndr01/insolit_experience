@@ -18,7 +18,7 @@ const Main = () => {
                 <title>InsoliteExperience</title>
                 <meta name="description" content="Site de voyage insolite"/>
                 <link rel="icon" href="/favicon.ico"/>
-                <meta property="og:image" content="https://example.com/preview-image.jpg"/>
+                <meta property="og:image" content="https://marv.lol"/>
                 <meta property="og:url" content="https://marv.lol"/>
                 <meta property="og:type" content="website"/>
             </Head>
