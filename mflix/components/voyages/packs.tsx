@@ -28,9 +28,10 @@ const Pack = () => {
         };
     }, []);
 
-    const goToGroup = (groupIndex) => {
+    const goToGroup = (groupIndex: number) => {
         setActiveGroup(groupIndex);
     };
+
 
     const nextGroup = () => {
         setActiveGroup((prevGroup) => (prevGroup === totalGroups - 1 ? 0 : prevGroup + 1));
