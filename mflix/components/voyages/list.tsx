@@ -6,7 +6,12 @@ const Voyages = [
         content:
             "Découvrez l'Italie et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Italie.",
         image: "/Frame 32.svg",
+        image2: "/4image.svg",
         price: 1500,
+        repas: "sur place",
+        nbSalleDeBain: 2,
+        wifi: "gratuit",
+        nbPersonne: 2,
     },
     {
         id: 2,
@@ -14,7 +19,12 @@ const Voyages = [
         content:
             "Découvrez l'Espagne et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Espagne.",
         image: "/Frame 33.svg",
+        image2: "/4image.svg",
         price: 2000,
+        repas: "sur place",
+        nbSalleDeBain: 1,
+        wifi: "gratuit",
+        nbPersonne: 3,
     },
     {
         id: 3,
@@ -22,7 +32,12 @@ const Voyages = [
         content:
             "Découvrez la France et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en France.",
         image: "/Frame 33.svg",
+        image2: "/4image.svg",
         price: 2500,
+        repas: "sur place",
+        nbSalleDeBain: 3,
+        wifi: "gratuit",
+        nbPersonne: 4,
     },
     {
         id: 4,
@@ -30,7 +45,12 @@ const Voyages = [
         content:
             "Découvrez l'Allemagne et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Allemagne.",
         image: "/Frame 33.svg",
+        image2: "/4image.svg",
         price: 3000,
+        repas: "sur place",
+        nbSalleDeBain: 2,
+        wifi: "gratuit",
+        nbPersonne: 5,
     },
     {
         id: 5,
@@ -38,7 +58,12 @@ const Voyages = [
         content:
             "Découvrez l'Angleterre et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Angleterre.",
         image: "/Frame 33.svg",
+        image2: "/4image.svg",
         price: 3500,
+        repas: "sur place",
+        nbSalleDeBain: 1,
+        wifi: "gratuit",
+        nbPersonne: 6,
     },
     {
         id: 6,
@@ -46,7 +71,12 @@ const Voyages = [
         content:
             "Découvrez la Suisse et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Suisse.",
         image: "/Frame 33.svg",
+        image2: "/4image.svg",
         price: 4000,
+        repas: "sur place",
+        nbSalleDeBain: 2,
+        wifi: "gratuit",
+        nbPersonne: 7,
     },
 ];
 

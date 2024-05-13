@@ -4,6 +4,7 @@ import Voyages from '../../components/voyages/list';
 import NavComponent from '../../components/nav';
 import MontageForm from '../../components/form_travel/form_travel';
 import Footer from '../../components/footer';
+import Image from "next/image";
 
 const VoyageDetailPage = () => {
     const router = useRouter();
@@ -33,38 +34,56 @@ const VoyageDetailPage = () => {
             <NavComponent />
             <div className="bg-gradient-to-b from-purple-300 via-purple-400 to-blue-500 min-h-screen px-4 py-8 md:py-16"
                  style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)'}}>
-                <div className="flex items-center justify-center min-h-screen ">
-                    <div className="max-w-3xl w-200 bg-white rounded-lg shadow-lg p-6 ">
-                        <div
-                            className="flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
-                            <img
-                                src={voyage.image}
-                                alt={voyage.name}
-                                className="w-full md:w-1/2 rounded-lg shadow-lg object-cover"
-                                style={{height: '400px'}}
-                            />
-                            <div className="w-full md:w-1/2 mr">
-                                <div className="container">
+                <div className="flex items-center justify-center min-h-screen  ">
+                    <div className="max-w-3xl w-200 bg-white p-6 w-260 rounded-lg ">
+
+                        <div className="flex flex-col md:flex-row">
+                            <div className="w-full md:w-1/2 rounded-lg overflow-hidden">
+                                <img
+                                    src={voyage.image}
+                                    alt={voyage.name}
+                                    className="w-full h-auto object-cover"
+                                    style={{height: '400px'}}
+                                />
+                            </div>
+                            <div className="w-full md:w-1/2 md:ml-4 mt-4 md:mt-0">
+                                <img
+                                    src={voyage.image2 ? voyage.image2 : voyage.image}
+                                    alt={voyage.name}
+                                    className="w-full h-auto rounded-lg object-cover"
+                                    style={{height: '400px'}}
+                                />
+                            </div>
+                        </div>
+                        <div className="w-full md:w-1/2 mr">
+                            <div className="container">
                                 <h1 className="text-3xl md:text-4xl font-bold text-gray-800">{voyage.name}</h1>
                                 <p className="text-lg text-gray-700 mt-2">Lieu : {voyage.location}</p>
                                 <p className="text-gray-800 mt-4">{voyage.content}</p>
-                                </div>
-                                <div className="mt-8">
-                                    <h2 className="text-xl font-semibold text-gray-800 ml-4">Réservation</h2>
-                                    <MontageForm id={id}/>
-                                    <button
-                                        onClick={() => addToPanier(voyage)}
-                                        className="mt-4 w-full bg-primary text-white py-3 rounded-md hover:bg-opacity-80 transition duration-300"
-                                    >
-                                        Ajouter au Panier
-                                    </button>
+                                <div className="flex items-center mt-4">
+                                    <img src="/Frame85.svg" alt="nuage" className="w-9 h-9"/> <p
+                                    className="text-lg text-gray-700 ml-2">Prix : {voyage.repas}</p>
+                                    <img src="/salleDebain.svg" alt="nuage" className="w-9 h-9 ml-4"/> <p
+                                    className="text-lg text-gray-700 ml-2">Salle de bain: {voyage.nbSalleDeBain}</p>
+                                    <img src="/euros.svg" alt="nuage" className="w-9 h-9 ml-4"/> <p
+                                    className="text-lg text-gray-700 ml-2">Prix : {voyage.price} €</p>
+                                    <img src="/wifi.svg" alt="nuage" className="w-9 h-9 ml-4"/> <p
+                                    className="text-lg text-gray-700 ml-2">Wifi : {voyage.wifi ? "Oui" : "Non"}</p>
+                                    <img src="/lit.svg" alt="nuage" className="w-9 h-9 ml-4"/> <p
+                                    className="text-lg text-gray-700 ml-2">{voyage.nbPersonne} personnes</p>
                                 </div>
                             </div>
+                            <div className="mt-8">
+                                <h2 className="text-xl font-semibold text-gray-800 ml-4">Réservation</h2>
+                                <MontageForm id={id}/>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
             </div>
+
             <Footer/>
         </>
     );

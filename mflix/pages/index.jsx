@@ -22,12 +22,13 @@ const Main = () => {
                         <div>
                             <VoyagesList />
                             <News />
+
                         </div>
                         <div>
                             <Packs />
                         </div>
+
                     </div>
-                    <ScrollToTop />
 
                 </section>
                 <Footer />

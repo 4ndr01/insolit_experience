@@ -1270,3 +1270,22 @@ video {
   padding: 6rem;
 }
 
+.hidden {
+  display: none;
+}
+
+.w-220 {
+  width: 55rem;
+}
+
+.w-240 {
+  width: 60rem;
+}
+
+.w-260 {
+  width: 65rem;
+}
+
+.w-280 {
+  width: 70rem;
+}
