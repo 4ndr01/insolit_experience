@@ -19,7 +19,7 @@ const MontageForm = ({id}) => {
     const { data: session } = useSession();
     const router = useRouter();
     const voyage = Voyages.find(voyage => String(voyage.id) === id);
-
+const image = voyage.image;
 
     // Effet pour mettre à jour les données de session
     useEffect(() => {
@@ -54,7 +54,7 @@ const MontageForm = ({id}) => {
 
     // Effet pour valider le formulaire
     useEffect(() => {
-        setIsFormValid(name && email && destination && validateTextArea(destination));
+        setIsFormValid(image && name && email && destination && validateTextArea(destination));
     }, [name, email, destination]);
 
     // Fonction de soumission du formulaire
@@ -76,6 +76,7 @@ const MontageForm = ({id}) => {
                     departDate,
                     retourDate,
                     nombrePersonnes,
+                    image
                 }),
             });
 

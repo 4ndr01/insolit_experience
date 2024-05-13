@@ -33,6 +33,11 @@ try {
       type: String,
       required: false,
     },
+    etat: {
+      type: String,
+      enum: ["En attente", "En cours", "Terminé"],
+      default: "En attente",
+    },
   });
 
   commandeSchema.pre(/^find/, function (next) {

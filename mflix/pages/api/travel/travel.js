@@ -4,7 +4,7 @@ import User from "../../../models/user";
 import mongoose from "mongoose"; // Importez le modèle utilisateur
 
 export default async function POST(request, response) {
-    const { destination, departDate, retourDate, nombrePersonnes, userId } = request.body;
+    const { destination, departDate, retourDate, nombrePersonnes, userId,image } = request.body;
 
     try {
         await connectMongoDB();
@@ -16,6 +16,7 @@ export default async function POST(request, response) {
             retourDate,
             nombrePersonnes,
             userId,
+            image
         });
         await travel.save();
 

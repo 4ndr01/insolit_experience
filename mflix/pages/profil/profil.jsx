@@ -50,7 +50,7 @@ const Profile = () => {
                     <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-full overflow-hidden">
                         <Image src={image?.imageFond} alt="profile" layout="responsive" width="100" height="100" />
                     </div>
-                    <div className="ml-4 bg-white rounded-full p-4">
+                    <div className="ml-4 bg-white rounded-lg p-4">
                         <h1 className="text-2xl font-bold">Pseudo: {user?.name}</h1>
                         <p className="text-lg text-gray-500">Email: {user?.email}</p>
                         <p className="text-lg text-gray-500">Rôle : {user?.role}</p>
@@ -68,6 +68,7 @@ const Profile = () => {
                         <ul className="grid gap-4">
                             {userCommands.map((commande, index) => (
                                 <li key={index} className="bg-white p-4  shadow-md mt-20 image rounded-md">
+                                    <img src={commande.image} alt={commande.destination} className="   rounded-md" style={{height: '400px'}} />
                                     <p className="text-lg font-bold">Destination: {commande.destination}</p>
                                     <p>Date de départ: {formatDate(commande.departDate)}</p>
                                     <p>Date de retour: {formatDate(commande.retourDate)}</p>
