@@ -16,7 +16,7 @@ module.exports ={
                 headers: [
                     {
                         key: 'Access-Control-Allow-Origin',
-                        value: '*', // Remplacez `*` par le domaine autorisé, par exemple `https://www.marv.lol`
+                        value: 'https://www.marv.lol', // Autoriser les requêtes depuis ce domaine
                     },
                     {
                         key: 'Access-Control-Allow-Methods',
