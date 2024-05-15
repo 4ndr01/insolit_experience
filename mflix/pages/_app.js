@@ -11,12 +11,15 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <div>
-        <SpeedInsights id="speed-insights" />
+
+
+            <SpeedInsights id="speed-insights" />
             <SessionProvider session={pageProps.session}>
             <UserProvider>
         <Component {...pageProps} />
         </UserProvider>
         </SessionProvider>
+
         </div>
     )
 }

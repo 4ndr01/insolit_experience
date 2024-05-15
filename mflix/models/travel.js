@@ -38,6 +38,8 @@ try {
       enum: ["En attente", "En cours", "Terminé"],
       default: "En attente",
     },
+    imageUrl: { type: String } // Champ pour le chemin d'accès de l'image
+
   });
 
   commandeSchema.pre(/^find/, function (next) {

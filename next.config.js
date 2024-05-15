@@ -11,8 +11,7 @@ module.exports ={
     async headers() {
         return [
             {
-                // Autoriser les requêtes depuis n'importe quel domaine
-                source: '/api/:path*', // Remplacez `:path*` par le chemin de votre API
+                source: '/api/:path*',
                 headers: [
                     {
                         key: 'Access-Control-Allow-Origin',

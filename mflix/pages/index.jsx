@@ -6,8 +6,7 @@ import Packs from "../components/voyages/packs";
 import SearchBarWithVoyagesList from "../components/searchbar";
 import Footer from "../components/footer";
 import Voyages from "../components/voyages/list";
-import Image from "next/image";
-import ScrollToTop from "../components/scrollToTop";
+
 import Head from "next/head";
 
 const Main = () => {
@@ -29,7 +28,6 @@ const Main = () => {
                  style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)' }}>
                 <section className="container mx-auto p-4">
                     <SearchBarWithVoyagesList voyages={Voyages} />
-                    <Image src={"nuage 1.svg"} alt="nuage" width={100} height={100} />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-full" >
                         <div>
                             <VoyagesList />
@@ -43,8 +41,9 @@ const Main = () => {
                     </div>
 
                 </section>
-                <Footer />
+
             </div>
+            <Footer />
         </>
     );
 }
