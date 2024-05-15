@@ -1,20 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const withImages = require('next-images');
 
-    experimental: {
-        apiResolver: true,
-
-    },
-}
-
-module.exports ={
+module.exports = withImages({
     experimental: {
         api: {
             externalResolver: true,
             bodyParser: false,
             runtime: 'edge', // Utilisation du runtime "edge"
         },
-
+    },
 
     async headers() {
         return [
@@ -37,5 +30,4 @@ module.exports ={
             },
         ];
     },
-    }
-}
+});

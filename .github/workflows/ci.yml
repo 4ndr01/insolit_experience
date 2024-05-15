@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main  # Déclenche le workflow sur les push vers la branche principale (à adapter selon vos besoins)
+
+jobs:
+  build:
+    runs-on: macos-latest  # Utilise macOS pour exécuter les jobs (à adapter selon vos besoins)
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v2  # Récupère le code du dépôt
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2  # Configure l'environnement Node.js
+
+      - name: Installer les dépendances
+        run: npm install  # Installe les dépendances du projet
+
+      - name: Exécuter les tests
+        run: npm test  # Exécute les tests du projet (à adapter selon votre configuration de tests)

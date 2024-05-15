@@ -65,30 +65,33 @@ function UsersManagement() {
 
     return (
         <>
+            <NavComponent />
             <div className="min-h-screen bg-gradient-to-b from-purple-300 via-purple-400 to-blue-500 px-4 py-8 md:py-16"
                  style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)' }}>
                 <h1 className="text-2xl font-bold text-white">Liste des utilisateurs</h1>
-            <NavComponent />
+
             <section>
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : users.length === 0 ? (
                     <p>No users found.</p>
                 ) : (
-                    <table className="border-collapse w-full">
+                    <table className="table-auto border-collapse w-full mt-14 ">
                         <thead>
-                        <tr className="rounded-lg text-sm font-medium text-gray-700 text-left">
+                        <tr className="rounded-lg text-sm font-medium text-gray-700 ">
                             <th className="px-4 py-2">Name</th>
                             <th className="px-4 py-2">Email</th>
                             <th className="px-4 py-2">Actions</th>
+                            <th className="px-4 py-2">Role</th>
                         </tr>
                         </thead>
                         <tbody>
                         {users.map((user) => (
                             <tr key={user._id} className="hover:bg-gray-100 border-b border-gray-200">
-                                <td className="px-4 py-2">{user.name}</td>
-                                <td className="px-4 py-2">{user.email}</td>
-                                <td className="px-4 py-2 ">
+                                <td className="px-4 py-2 text-center">{user.name}</td>
+                                <td className="px-4 py-2 text-center">{user.email}</td>
+                                <td className="px-4 py-2 text-center">{user.role}</td>
+                                <td className="px-4 py-2 text-center"> {/* Ajout de text-center pour centrer le contenu */}
                                     <button onClick={() => handleDeleteClick(user._id)}>Delete</button>
                                 </td>
                             </tr>
@@ -105,6 +108,9 @@ function UsersManagement() {
                         </div>
                     </div>
                 )}
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="/addVoyage/addVoyage">ajout de voyage</a>
+                </button>
             </section>
             </div>
         </>
