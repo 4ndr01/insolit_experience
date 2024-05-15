@@ -50,7 +50,6 @@ export async function POST(request) {
         }
     } catch (error) {
         console.error(error);
-        // Hata yönetimi
         if (error instanceof mongoose.Error.ValidationError) {
             let errorList = [];
             for (let e in error.errors) {
@@ -113,6 +112,10 @@ export async function GET(request) {
                 },
                 { status: 500 }
             );
+
+
         }
     }
+
+
 }
