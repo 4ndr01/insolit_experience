@@ -1,11 +1,35 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
     experimental: {
         apiResolver: true,
-        images: {
-            domains: ['media.routard.com'], // Ajoutez le domaine ici
-        },
+
     },
 }
 
-module.exports = nextConfig
+module.exports ={
+    async headers() {
+        return [
+            {
+                // Autoriser les requêtes depuis n'importe quel domaine
+                source: '/api/:path*', // Remplacez `:path*` par le chemin de votre API
+                headers: [
+                    {
+                        key: 'Access-Control-Allow-Origin',
+                        value: '*', // Remplacez `*` par le domaine autorisé, par exemple `https://www.marv.lol`
+                    },
+                    {
+                        key: 'Access-Control-Allow-Methods',
+                        value: 'GET, POST, PUT, DELETE, OPTIONS', // Méthodes HTTP autorisées
+                    },
+                    {
+                        key: 'Access-Control-Allow-Headers',
+                        value: 'X-Requested-With, Content-Type, Authorization', // En-têtes autorisés
+                    },
+                ],
+            },
+        ];
+    },
+
+
+}
