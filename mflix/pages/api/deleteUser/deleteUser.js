@@ -1,7 +1,8 @@
 import { getSession } from "next-auth/react";
-import mongoose from "mongoose";
-import User from "../../../models/user";
+
 import connectMongoDB from "../../../lib/mongodb";
+import User from "../../../models/user";
+import mongoose from "mongoose";
 
 export default async function handler(req, res) {
     if (req.method !== "DELETE") {
@@ -33,3 +34,4 @@ export default async function handler(req, res) {
         return res.status(500).json({ message: "Erreur serveur" });
     }
 }
+

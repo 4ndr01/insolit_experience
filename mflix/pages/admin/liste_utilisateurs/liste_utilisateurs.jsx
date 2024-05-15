@@ -37,20 +37,19 @@ function UsersManagement() {
         }
     };
 
-    const deleteUser = async (userId) => {
+    const deleteUser = async (id) => {
         try {
-            const res = await fetch(`http://localhost:3000/api/delete_user/${userId}`, {
+            const res = await fetch(`/api/deleteUser/${id}`, {
                 method: "DELETE",
             });
 
             if (!res.ok) {
-                throw new Error("Failed to delete user");
+                throw new Error("Échec de la suppression de l'utilisateur");
             }
-
+            console.log(res);
             await loadUsers(); // Recharge la liste des utilisateurs après la suppression
-            console.log("User deleted successfully");
         } catch (error) {
-            console.error("Error deleting user: ", error);
+            console.error("Erreur lors de la suppression de l'utilisateur: ", error);
         }
     };
 

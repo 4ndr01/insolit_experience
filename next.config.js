@@ -8,6 +8,14 @@ const nextConfig = {
 }
 
 module.exports ={
+    experimental: {
+        api: {
+            externalResolver: true,
+            bodyParser: false,
+            runtime: 'edge', // Utilisation du runtime "edge"
+        },
+
+
     async headers() {
         return [
             {
@@ -29,6 +37,5 @@ module.exports ={
             },
         ];
     },
-
-
+    }
 }
