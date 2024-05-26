@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Voyages from '../components/voyages/list';
 import Link from 'next/link';
-import styles from './SearchBar.module.css'; // Importez le module CSS
-
+import styles from'../../mflix/pages/SearchBar.module.css';
 const SearchBar = () => {
     const [query, setQuery] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
@@ -23,21 +22,21 @@ const SearchBar = () => {
         <div className={styles.searchContainer}>
             <div className={styles.inputContainer}>
                 <input
-                    className={styles.input}
+                    className="search-input"
                     type="text"
                     placeholder="Rechercher..."
                     value={query}
                     onChange={e => setQuery(e.target.value)}
                 />
                 <input
-                    className={styles.input}
+                    className="search-input"
                     type="number"
                     placeholder="Prix max"
                     value={maxPrice}
                     onChange={e => setMaxPrice(e.target.value)}
                 />
                 <select
-                    className={styles.input}
+                    className="search-input"
                     value={category}
                     onChange={e => setCategory(e.target.value)}
                 >
@@ -47,12 +46,9 @@ const SearchBar = () => {
                     <option value="Culture">Culture</option>
                     <option value="Sport">Sport</option>
                 </select>
-                <button
-                    className={styles.button}
-                    onClick={handleSearch}
-                >
-                    Rechercher
-                </button>
+                <button className="search-button" onClick={handleSearch}>Rechercher</button>
+
+
             </div>
 
             <ul className={styles.voyagesList}>

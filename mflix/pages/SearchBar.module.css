@@ -104,4 +104,97 @@
     font-size: 0.875rem;
 }
 
+/* Dégradé linéaire */
+.gradient-background {
+    background: linear-gradient(to bottom, #8474E4, #4CB4FF);
+}
 
+/* Titre h1 */
+.custom-h1 {
+    font-family: 'Tahoma', Arial, sans-serif;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+}
+
+/* Zone de recherche */
+.search-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Champs de saisie et bouton */
+/* Champs de saisie et bouton */
+.search-input,
+.search-button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Champs de saisie */
+.search-input {
+    width: calc(100% - 10px); /* La largeur du bouton */
+}
+
+/* Bouton de recherche */
+.search-button {
+    background-color: rgb(74, 108, 247);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* Liste des voyages */
+.voyagesList {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Affiche les voyages sur trois colonnes égales */
+    gap: 20px; /* Espacement entre les éléments de la grille */
+    padding: 0;
+}
+
+/* Éléments de la liste des voyages */
+.voyageItem {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    text-align: center; /* Centrer le contenu */
+}
+
+/* Image dans la liste des voyages */
+.voyageItem img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Titre dans la liste des voyages */
+.voyageItem h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+}
+
+/* Prix dans la liste des voyages */
+.voyageItem .price {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Rendre la page responsive */
+@media (max-width: 768px) {
+    /* Réduire la largeur des colonnes à une seule */
+    .voyagesList {
+        grid-template-columns: 1fr;
+    }
+}

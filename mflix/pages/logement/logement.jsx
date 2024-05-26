@@ -1,6 +1,7 @@
 import SearchBar from '../../components/searchBarDate';
 import NavComponent from "../../components/nav";
 import Footer from "../../components/footer";
+import '../SearchBar.module.css';
 // Exemple de données
 const data = [
     { name: 'Événement 1', date: '2024-05-20' },
@@ -12,10 +13,9 @@ const Home = () => {
     return (
         <>
             <NavComponent/>
-            <div
-                className="min-h-screen bg-gradient-to-b from-purple-300 via-purple-400 to-blue-500 px-4 py-8 md:py-16"
-                style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)'}}>
-                <h1 className="custom-h1">Nos logements</h1>
+            <div className="min-h-screen bg-gradient-to-b from-purple-300 via-purple-400 to-blue-500 px-4 py-8 md:py-16"
+                    style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)'}}>
+                <h1 className="custom-h1 text-3xl md:text-4xl lg:text-5xl text-white font-bold mb-4">Nos logements</h1>
 
                 <SearchBar data={data}/>
             </div>
@@ -36,11 +36,8 @@ const Home = () => {
                     cursor: pointer;
                 }
 
-                h1 {
-
+                .custom-h1 {
                     font-family: 'Tahoma', Arial, sans-serif;
-                    font-size: 2rem;
-                    
                     margin-bottom: 1rem;
                 }
             `}</style>
