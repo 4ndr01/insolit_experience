@@ -18,6 +18,7 @@ const Main = () => {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 <meta name="description" content="Site de voyage insolite"/>
                 <link rel="icon" href="/favicon.ico"/>
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tahoma&display=swap" />
                 <meta property="og:image" content="https://marv.lol"/>
                 <meta property="og:url" content="https://marv.lol"/>
                 <meta property="og:type" content="website"/>

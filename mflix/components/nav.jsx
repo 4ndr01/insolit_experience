@@ -5,6 +5,7 @@ import { useSession, signOut } from "next-auth/react";
 import Logo from "../public/logo.svg";
 import Loading from "../components/loading";
 import menuData from "./menuData";
+import Image from "next/image";
 
 export default function NavComponent() {
     const router = useRouter();
@@ -102,14 +103,14 @@ export default function NavComponent() {
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300 cursor-pointer">Idées
                             de séjour</p>
                     </Link>
-                    <Link href="/form_travel/form_travel">
+                    <Link href="/logement/logement">
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300 cursor-pointer">Logement</p>
                     </Link>
                     <Link href="/testPanier/test">
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300 cursor-pointer">Activités</p>
                     </Link>
                     <Link href="/panier/panier">
-                        <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300 cursor-pointer">Panier</p>
+                        <img src={"/Vector.svg"} alt="panier" className="h-8 w-8 cursor-pointer"/>
                     </Link>
                     {session ? (
                         <button

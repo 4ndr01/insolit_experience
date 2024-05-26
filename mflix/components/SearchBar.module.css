@@ -1,0 +1,107 @@
+.voyagesList {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    border-radius: 8px; /* Ajoute des coins arrondis */
+    padding: 1em; /* Ajoute un peu de padding à l'intérieur de la div */
+}
+
+.voyageItem {
+    flex: 1 1 calc(33.333% - 1em); /* Trois items par ligne, ajustez selon vos besoins */
+    margin: 0.5em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.2s;
+    background-color: white; /* Définit le fond blanc pour chaque item */
+}
+
+.voyageItem:hover {
+    transform: scale(1.05);
+}
+
+.voyageItem img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.searchButton {
+    background-color: #0070f3; /* Couleur de fond bleu */
+    color: white; /* Couleur du texte blanc */
+    border: none; /* Pas de bordure */
+    padding: 10px 20px; /* Padding pour agrandir le bouton */
+    font-size: 16px; /* Taille du texte */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s; /* Transition douce pour le changement de couleur */
+}
+
+.searchButton:hover {
+    background-color: #005bb5; /* Couleur de fond plus sombre au survol */
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.inputContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.input {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    font-size: 0.875rem;
+}
+
+.button {
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    color: #000;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.voyagesList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.voyageItem {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+}
+
+.image {
+    width: 30%;
+    border-radius: 0.25rem;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.content {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+}
+
+.price {
+    margin-top: 0.25rem;
+    color: #007bff;
+    font-size: 0.875rem;
+}
+
+
