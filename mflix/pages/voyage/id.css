@@ -1,0 +1,50 @@
+/* Pour les écrans larges */
+@media only screen and (min-width: 768px) {
+    .flex-col {
+        flex-direction: row;
+    }
+
+    .w-full {
+        width: 50%;
+    }
+
+    .mt-8 {
+        margin-top: 2rem;
+    }
+
+    .ml-4 {
+        margin-left: 1rem;
+    }
+
+    .mr {
+        margin-right: 1rem;
+    }
+}
+
+/* Pour les écrans étroits (mobiles) */
+@media only screen and (max-width: 767px) {
+    .w-260 {
+        width: calc(100% - 2rem); /* Largeur à 100% moins les marges */
+        margin: 0 auto; /* Centrer sur la page */
+    }
+
+    .w-full {
+        width: 100%;
+    }
+
+    .md\:ml-4 {
+        margin-left: 0; /* Supprimer la marge sur les écrans mobiles */
+    }
+
+    .mt-8 {
+        margin-top: 1rem; /* Réduire la marge supérieure sur les écrans mobiles */
+    }
+
+    .ml-4 {
+        margin-left: 0; /* Supprimer la marge à gauche sur les écrans mobiles */
+    }
+
+    .mr {
+        margin-right: 0; /* Supprimer la marge à droite sur les écrans mobiles */
+    }
+}

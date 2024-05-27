@@ -4,7 +4,7 @@ import Voyages from '../../components/voyages/list';
 import NavComponent from '../../components/nav';
 import MontageForm from '../../components/form_travel/form_travel';
 import Footer from '../../components/footer';
-import Image from "next/image";
+import "./id.css";
 
 const VoyageDetailPage = () => {
     const router = useRouter();
