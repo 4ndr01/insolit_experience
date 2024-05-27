@@ -42,7 +42,7 @@ const VoyageDetailPage = () => {
                                 <img
                                     src={voyage.image}
                                     alt={voyage.name}
-                                    className="w-full h-auto object-cover"
+                                    className=" object-cover"
                                     style={{height: '400px'}}
                                 />
                             </div>
@@ -50,7 +50,7 @@ const VoyageDetailPage = () => {
                                 <img
                                     src={voyage.image2 ? voyage.image2 : voyage.image}
                                     alt={voyage.name}
-                                    className="w-full h-auto rounded-lg object-cover"
+                                    className="object-cover"
                                     style={{height: '400px'}}
                                 />
                             </div>
