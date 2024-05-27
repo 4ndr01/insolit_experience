@@ -5,6 +5,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SessionProvider } from "next-auth/react"
 import { UserProvider } from '../context/userContext';
 import '../pages/output.css';
+import "../nav.css";
+import "../components/voyages/list.css";
+import "../components/footer.css";
+
 
 
 function MyApp({ Component, pageProps }) {

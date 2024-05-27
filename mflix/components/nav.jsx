@@ -5,7 +5,6 @@ import { useSession, signOut } from "next-auth/react";
 import Logo from "../public/logo.svg";
 import Loading from "../components/loading";
 import menuData from "./menuData";
-import Image from "next/image";
 
 export default function NavComponent() {
     const router = useRouter();
