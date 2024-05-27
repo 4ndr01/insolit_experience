@@ -8,6 +8,7 @@ import '../pages/output.css';
 import "../nav.css";
 import "../components/voyages/list.css";
 import "../components/footer.css";
+import "../pages/voyage/id.css";
 
 
 
