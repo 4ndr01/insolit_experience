@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/router';
 import Image from "next/image";
 import Footer from "../../components/footer";
+import Link from "next/link";
 
 const Profile = () => {
     const { data: session } = useSession();
@@ -78,6 +79,7 @@ const Profile = () => {
                             <p>Chargement en cours...</p>
                         ) : (
                             userCommands.map((commande, index) => (
+                                <Link href={`/voyage/${commande._id}`} key={index}>
                                 <li key={index} className="bg-white p-4 shadow-md mt-20 image rounded-md">
                                     <img src={commande.image} alt={commande.destination} className="h-auto object-cover rounded-md" style={{height: '300px'}} />
                                     <p className="text-lg font-bold">Destination: {commande.destination}</p>
@@ -85,6 +87,7 @@ const Profile = () => {
                                     <p>Date de retour: {formatDate(commande.retourDate)}</p>
                                     <p>Nombre de personnes: {commande.nombrePersonnes}</p>
                                 </li>
+                                </Link>
                             ))
                         )}
                     </ul>
