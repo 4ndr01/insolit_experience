@@ -13,33 +13,39 @@ const Home = () => {
     return (
         <>
             <NavComponent/>
+
             <div className="min-h-screen bg-gradient-to-b from-purple-300 via-purple-400 to-blue-500 px-4 py-8 md:py-16"
                     style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)'}}>
-                <h1 className="custom-h1 text-3xl md:text-4xl lg:text-5xl text-white font-bold mb-4">Nos logements</h1>
+                <h1 className="">Nos logements</h1>
 
                 <SearchBar data={data}/>
             </div>
             <Footer/>
             <style jsx>{`
-                /* Importer la police Tahoma */
-                @font-face {
-                    font-family: 'Tahoma';
-                    src: url('/mflix/pages/logement/font/tahoma.ttf'); /* Assurez-vous que le chemin est correct */
+
+                h1{
+                    font-family: 'Anomega', sans-serif; /* Ajout de la police personnalisée */
+                    font-size: 3rem;
+                    color: white;
+                    
                 }
 
-                button {
+                .custom-button {
                     cursor: pointer;
                     background-color: rgb(74 108 247);
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    transition: background-color 0.3s ease;
                 }
 
-                .button {
-                    cursor: pointer;
+                .custom-button:hover {
+                    background-color: rgb(57, 80, 197);
                 }
 
-                .custom-h1 {
-                    font-family: 'Tahoma', Arial, sans-serif;
-                    margin-bottom: 1rem;
-                }
+                
             `}</style>
         </>
     );
