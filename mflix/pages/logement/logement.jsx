@@ -26,7 +26,7 @@ const Home = () => {
                 h1{
                     font-family: 'Anomega', sans-serif; /* Ajout de la police personnalisée */
                     font-size: 3rem;
-                    color: white;
+                    color: black;
                     
                 }
 
