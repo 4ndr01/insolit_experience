@@ -16,14 +16,7 @@ const SearchBarWithVoyagesList: React.FC<{ voyages: any[] }> = ({ voyages }) => 
 
     return (
         <div className="relative">
-            <div className="absolute inset-0 z-0 ">
-                <img
-                    src="Fichier21.svg"
-                    alt="nuage"
-                    className="blur-md"
-                    style={{ width: '300%', height: '300%', left: 0, top: 0 }} // Position à gauche et en haut
-                />
-            </div>
+
             <div className="z-10 relative">
                 <div className="flex justify-center items-center mt-20">
                     <input
