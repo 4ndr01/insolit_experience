@@ -10,7 +10,7 @@ const SearchBar = () => {
 
     const handleSearch = () => {
         const filtered = Voyages.filter(voyage => {
-            const matchesQuery = voyage.name.toLowerCase().includes(query.toLowerCase());
+            const matchesQuery = voyage.position.toLowerCase().includes(query.toLowerCase());
             const matchesPrice = maxPrice ? voyage.price <= maxPrice : true;
             const matchesCategory = category ? voyage.category === category : true;
             return matchesQuery && matchesPrice && matchesCategory;
@@ -59,6 +59,7 @@ const SearchBar = () => {
                             <h3 className={styles.title}>{voyage.name}</h3>
                             <p className={styles.content}>{voyage.content}</p>
                             <p className={styles.price}>{voyage.price} €</p>
+
                         </li>
                     </Link>
                 ))}

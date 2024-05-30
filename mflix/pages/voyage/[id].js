@@ -79,16 +79,35 @@ const VoyageDetailPage = () => {
                             </div>
                         </div>
 
+                        <div className="mt-8">
+                            <h2 className="text-xl font-semibold text-gray-800 ml-4">Avis</h2>
+                            <div className="bg-white p-4 rounded-lg mt-4">
+                                <div className="flex items-center">
+                                    <img src="/Icône%20profil.png" alt="avatar" className="w-12 h-12 rounded-full"/>
+                                    <div className="ml-4">
+
+                                        <p className="text-gray-700">{voyage.avis}</p>
+                                    </div>
+
+                                    <div className="ml-4">
+                                        <img src="/Icône%20profil.png" alt="avatar" className="w-12 h-12 rounded-full"/>
+                                        <p className="text-gray-700">{voyage.avis2}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
+
                 </div>
 
             </div>
 
             <Footer/>
             <style jsx>{`
-            /* Pour les écrans larges */
-@media only screen and (min-width: 768px) {
-    .flex-col {
+                /* Pour les écrans larges */
+                @media only screen and (min-width: 768px) {
+                    .flex-col {
         flex-direction: row;
     }
 

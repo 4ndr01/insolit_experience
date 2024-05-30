@@ -11,7 +11,7 @@ const SearchBarWithVoyagesList: React.FC<{ voyages: any[] }> = ({ voyages }) => 
     };
 
     const filteredVoyages = voyages.filter(voyage =>
-        voyage.name.toLowerCase().includes(searchQuery.toLowerCase())
+        voyage.position.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
