@@ -37,7 +37,7 @@ export default function NavComponent() {
             <nav className="md:px-6 lg:px-8 xl:px-10">
                 <div className="container flex items-center justify-between">
                     <Link href="/">
-                        <img src="/logo.svg" alt="logo" className="h-20 w-20 cursor-pointer"/>
+                        <img src="/logo.svg" alt="logo" className="h-25 w-25 cursor-pointer"/>
                     </Link>
 
                     <ul className="block lg:flex lg:space-x-12">
