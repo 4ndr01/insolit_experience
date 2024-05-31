@@ -42,7 +42,7 @@ const VoyageDetailPage = () => {
                                 <img
                                     src={voyage.image}
                                     alt={voyage.name}
-                                    className=" object-cover"
+                                    className=" object-cover rounded-lg"
                                     style={{height: '400px'}}
                                 />
                             </div>
