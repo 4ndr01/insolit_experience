@@ -43,7 +43,7 @@ const Voyages = [
         content:
             "Plongez dans un séjour unique et inoubliable en choisissant la yourte. Au cœur de la nature,  cette habitation traditionnelle mongole vous offrira une parfaite combinaison de confort moderne et d'authenticité. En famille, amis ou en couple, la yourte saura vous surprendre pour une nuit insolite inoubliable.\n" +
             "\n",
-        image: "/yourte.jpg",
+        image: "/Yourte.jpg",
         image2: "/4image.svg",
         price:  120,
         repas: "sur place",
