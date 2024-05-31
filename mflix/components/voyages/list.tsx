@@ -24,7 +24,7 @@ const Voyages = [
         position: "Bordeaux",
         content:
             "Découvrez notre écolodge, une maison sur l'eau pour une escapade unique. Profitez de la tranquillité et de la beauté naturelle tout en flottant paisiblement. Réservez dès maintenant pour une expérience mémorable !",
-        image: "/Ecolodge.jpeg",
+        image: "/Ecolodge.jpg",
         image2: "/4image.svg",
         price: 146,
         repas: "sur place",
@@ -43,7 +43,7 @@ const Voyages = [
         content:
             "Plongez dans un séjour unique et inoubliable en choisissant la yourte. Au cœur de la nature,  cette habitation traditionnelle mongole vous offrira une parfaite combinaison de confort moderne et d'authenticité. En famille, amis ou en couple, la yourte saura vous surprendre pour une nuit insolite inoubliable.\n" +
             "\n",
-        image: "/yourte.jpeg",
+        image: "/yourte.jpg",
         image2: "/4image.svg",
         price:  120,
         repas: "sur place",
