@@ -76,7 +76,7 @@ function UsersManagement() {
                 ) : users.length === 0 ? (
                     <p>No users found.</p>
                 ) : (
-                    <table className="table-auto border-collapse w-full mt-14 ">
+                    <table className="table-auto border-collapse w-full mt-14 bg-white rounded-lg">
                         <thead>
                         <tr className="rounded-lg text-sm font-medium text-gray-700 ">
                             <th className="px-4 py-2">Name</th>
