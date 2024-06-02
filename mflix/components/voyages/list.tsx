@@ -6,7 +6,7 @@ const Voyages = [
         position: "Paris",
         content:
             "Évadez-vous dans les hauteurs de la nature avec notre cabane dans les arbres : une oasis suspendue offrant confort et tranquillité.",
-        image: "/Cabane_1.jpg",
+        image: "/Cabane1.webp",
         image2: "/4image.svg",
         price: 112,
         repas: "sur place",
