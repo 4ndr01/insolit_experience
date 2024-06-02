@@ -62,7 +62,7 @@ const Voyages = [
         content:
             "Laissez-vous envoûter par une nuit magique au beau milieu des étoiles avec notre bulle transparente. Située dans un cadre naturel exceptionnel, notre bulle offre une expérience unique, parfaite pour une escapade romantique ou une retraite paisible.\n" +
             "\n",
-        image: "/Bulle_3.jpg",
+        image: "/Bulle_3.webp",
         image2: "/4image.svg",
         price: 150,
         repas: "sur place",
