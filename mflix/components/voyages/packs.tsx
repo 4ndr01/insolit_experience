@@ -46,22 +46,34 @@ const Pack = () => {
             <h2 className="text-3xl font-bold ml-15 mb-5">Les packs</h2>
             <div className="flex justify-center items-center overflow-x-scroll scrollbar-hide">
                 <button onClick={prevGroup} className="mr-4">
-                    <FiChevronLeft size={24}/>
+                    <FiChevronLeft size={24} />
                 </button>
                 <div className="flex gap-4" style={{ scrollBehavior: "smooth" }}>
                     {Voyages.slice(activeGroup * groupSize, (activeGroup + 1) * groupSize).map((voyage) => (
-                        <div key={voyage.id} className="relative ml-4 image">
+                        <div key={voyage.id} className="relative ml-4 image group">
                             <Link href={`/voyage/${voyage.id}`}>
-                                <Image src={voyage.image} alt={voyage.name} width={400} height={400} className="rounded-lg" />
-                                <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 transition-opacity duration-300 hover:opacity-100 flex justify-center items-center">
-                                    {/* Contenu de superposition (optionnel) */}
+                                <Image
+                                    src={voyage.image}
+                                    alt={voyage.name}
+                                    width={400}
+                                    height={400}
+                                    className="rounded-lg object-cover"
+                                />
+                                <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-4 rounded-lg text-center">
+                                    <h3 className="text-xl font-bold mb-2">{voyage.name}</h3>
+                                    <p className="text-sm mb-1">Lieu : {voyage.position}</p>
+                                    <p className="text-sm mb-1">Prix : {voyage.price} €</p>
+                                    <p className="text-sm mb-1">Repas : {voyage.repas}</p>
+                                    <p className="text-sm mb-1">Salles de bain : {voyage.nbSalleDeBain}</p>
+                                    <p className="text-sm mb-1">Wifi : {voyage.wifi ? "Oui" : "Non"}</p>
+                                    <p className="text-sm">Capacité : {voyage.nbPersonne} personnes</p>
                                 </div>
                             </Link>
                         </div>
                     ))}
                 </div>
                 <button onClick={nextGroup} className="ml-4">
-                    <FiChevronRight size={24}/>
+                    <FiChevronRight size={24} />
                 </button>
             </div>
             <div className="flex justify-center mt-4">
@@ -76,5 +88,6 @@ const Pack = () => {
         </div>
     );
 };
+
 
 export default Pack;
