@@ -124,6 +124,7 @@ const Profile = () => {
                                 value={newPseudo}
                                 placeholder="Nouveau pseudo"
                                 onChange={(e) => setNewPseudo(e.target.value)}
+                                className="bg-gray-100 border border-gray-300 focus:ring focus:ring-blue-500 rounded-md p-2"
                             />
                             <Button className="mt-2 bg-amber-400" onClick={handleSaveClick}>Modifier</Button>
                         </>
