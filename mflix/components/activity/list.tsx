@@ -24,7 +24,7 @@ const Activity = [
         position: "Bordeaux",
         content:
             "Découvrez notre écolodge, une maison sur l'eau pour une escapade unique. Profitez de la tranquillité et de la beauté naturelle tout en flottant paisiblement. Réservez dès maintenant pour une expérience mémorable !",
-        image: "/Ecolodge.jpg",
+        image: "/Ecolodge.webp",
         image2: "/4image.svg",
         price: 146,
         repas: "sur place",
@@ -154,7 +154,7 @@ const Activity = [
         content:
             "Découvrez les Catacombes de Paris, un lieu fascinant et mystérieux sous la capitale. Explorez ces tunnels historiques remplis d'ossements et apprenez-en plus sur l'histoire de Paris. Une visite unique qui vous plongera dans les profondeurs de la ville et de son passé.\n" +
             "\n",
-        image: "/LescatacombesdeParis.jpg",
+        image: "/CatacombesdeParis.webp",
         image2: "/4image.svg",
         price: 29,
         repas: "sur place",
@@ -173,7 +173,7 @@ const Activity = [
         content:
             "Description : \n" +
             "Découvrez le Colorado Provençal, un site naturel exceptionnel situé en plein cœur de la Provence. Ses roches aux couleurs flamboyantes, allant du jaune au rouge intense, offrent un spectacle époustouflant. Parfait pour des randonnées et des promenades, ce lieu unique en France vous plonge dans des paysages dignes de l'Ouest américain. Idéal pour les amoureux de la nature et de la photographie, le Colorado Provençal est une escapade incontournable pour profiter de la beauté et de la diversité.\n",
-        image: "/LECOLORADOPROVENÇAL.jpg",
+        image: "/ColoradoProvençal.webp",
         image2: "/4image.svg",
         price: 6,
         repas: "sur place",
@@ -191,7 +191,7 @@ const Activity = [
         position: "Londres",
         content:
             "Découvrez l'Angleterre et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Angleterre.",
-        image: "/Mongolfière_1.jpg",
+        image: "/Mongolfière1.webp",
         image2: "/4image.svg",
         price: 3500,
         repas: "sur place",
@@ -208,7 +208,7 @@ const Activity = [
         position: "Cote d'ivoire",
         content:
             "Découvrez l'Amérique et ses richesses culturelles et gastronomiques. Profitez d'un voyage de rêve en Amérique.",
-        image: "/Mongolfière.jpg",
+        image: "/Mongolfière.webp",
         image2: "/4image.svg",
         price: 2500,
         repas: "sur place",
