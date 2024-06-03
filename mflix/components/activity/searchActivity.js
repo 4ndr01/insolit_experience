@@ -9,10 +9,10 @@ const SearchBar = () => {
     const [filteredData, setFilteredData] = useState(Activity); // Initialiser avec tous les voyages
 
     const handleSearch = () => {
-        const filtered = Voyages.filter(voyage => {
-            const matchesQuery = voyage.position.toLowerCase().includes(query.toLowerCase());
-            const matchesPrice = maxPrice ? voyage.price <= maxPrice : true;
-            const matchesCategory = category ? voyage.category === category : true;
+        const filtered = Activity.filter(activity => {
+            const matchesQuery = activity.position.toLowerCase().includes(query.toLowerCase());
+            const matchesPrice = maxPrice ? activity.price <= maxPrice : true;
+            const matchesCategory = category ? activity.category === category : true;
             return matchesQuery && matchesPrice && matchesCategory;
         });
         setFilteredData(filtered);

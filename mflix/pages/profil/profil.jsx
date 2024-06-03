@@ -5,7 +5,8 @@ import { useRouter } from 'next/router';
 import Image from "next/image";
 import Footer from "../../components/footer";
 import Link from "next/link";
-import {Button} from "flowbite-react";
+import { Button, Input, Alert } from "flowbite-react";
+
 
 const Profile = () => {
     const { data: session } = useSession();
@@ -17,12 +18,21 @@ const Profile = () => {
     const [users, setUsers] = useState({});
     const [selectedFile, setSelectedFile] = useState(null);
     const [isLoading, setLoading] = useState(false);
+    const [isEditing, setIsEditing] = useState(false);
+    const [newPseudo, setNewPseudo] = useState(user?.name || "");
+
+
+    const router = useRouter();
 
     useEffect(() => {
         if (user && user.userId) {
             fetchUserData(user.userId).then(r => console.log(r));
         }
     }, [user]);
+
+    const handleEditClick = () => {
+        setIsEditing(true);
+    };
 
     const fetchUserData = async (userId) => {
         try {
@@ -34,6 +44,29 @@ const Profile = () => {
             setUserData(data);
             setUserCommands(data.commande);
             setImage(data.imageFond);
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    const handleSaveClick = async () => {
+        try {
+            const response = await fetch(`/api/user_id/${user.userId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ name: newPseudo }),
+            });
+
+            if (response.ok) {
+                // Mettre à jour le nom dans la session NextAuth
+                session.user.name = newPseudo;
+                setIsEditing(false);
+                setError("Votre pseudo a été mis à jour. Veuillez vous reconnecter pour que les changements soient pris en compte.");
+            } else {
+                throw new Error('Erreur lors de la mise à jour du pseudo.');
+            }
         } catch (error) {
             setError(error.message);
         }
@@ -82,26 +115,50 @@ const Profile = () => {
                     overflow: "auto",
                 }}
             >
-                <div className="container mx-auto mt-20 flex flex-col items-center justify-center">
-                    <div className="flex flex-col md:flex-row items-center mb-8">
-                        <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 rounded-lg overflow-hidden mb-4 md:mb-0 md:mr-4">
-                            {image && (
-                                <Image
-                                    src={image}
-                                    alt="profile"
-                                    layout="responsive"
-                                    width={100}
-                                    height={100}
-                                />
+                {/* ... (autre code inchangé) */}
+                <div className="bg-white rounded-lg p-4 md:ml-4 w-96 mt-16 mx-auto">
+                    {isEditing ? (
+                        <>
+                            <input
+                                type="text"
+                                value={newPseudo}
+                                placeholder="Nouveau pseudo"
+                                onChange={(e) => setNewPseudo(e.target.value)}
+                            />
+                            <Button className="mt-2 bg-amber-400" onClick={handleSaveClick}>Modifier</Button>
+                        </>
+                    ) : (
+                        <>
+                            <h1 className="text-2xl font-bold">Pseudo: {user?.name}</h1>
+                            <Button onClick={handleEditClick}>Modifier</Button>
+                        </>
+                    )}
+
+                    <p className="text-lg text-gray-500">Email: {user?.email}</p>
+                    <p className="text-lg text-gray-500">Rôle : {user?.role}</p>
+                </div>
+
+                {error && ( // Afficher l'alerte si une erreur s'est produite ou si le pseudo a été mis à jour
+                    <div className="flex justify-center mt-4">
+                        <div className="w-96">
+                            <Alert color={error.startsWith("Votre pseudo") ? "success" : "failure"}>
+                        <span>
+                            <span className="font-medium">
+                                {error.startsWith("Votre pseudo") ? "Succès :" : "Erreur :"}
+                            </span>{" "}
+                            {error}
+                        </span>
+                        </Alert>
+                        {error.startsWith("Votre pseudo") && ( // Afficher le bouton de déconnexion uniquement si le pseudo a été mis à jour
+                            <Button onClick={() => { signOut().then(r => router.push('/login/login')) }} className="mt-2">
+                                Se reconnecter
+                            </Button>
+
+
                             )}
                         </div>
-                        <div className="bg-white rounded-lg p-4 md:ml-4">
-                            <h1 className="text-2xl font-bold">Pseudo: {user?.name}</h1>
-                            <p className="text-lg text-gray-500">Email: {user?.email}</p>
-                            <p className="text-lg text-gray-500">Rôle : {user?.role}</p>
-                        </div>
                     </div>
-                </div>
+                )}
 
                 {/* Section des voyages */}
                 <div className="container mx-auto mt-8 px-4">
