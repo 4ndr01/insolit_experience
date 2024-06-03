@@ -173,7 +173,7 @@ const Voyages = [
         content:
             "Description : \n" +
             "Découvrez le Colorado Provençal, un site naturel exceptionnel situé en plein cœur de la Provence. Ses roches aux couleurs flamboyantes, allant du jaune au rouge intense, offrent un spectacle époustouflant. Parfait pour des randonnées et des promenades, ce lieu unique en France vous plonge dans des paysages dignes de l'Ouest américain. Idéal pour les amoureux de la nature et de la photographie, le Colorado Provençal est une escapade incontournable pour profiter de la beauté et de la diversité.\n",
-        image: "/LECOLORADOPROVENÇAL.jpg",
+        image: "/ColoradoProvençal.webp",
         image2: "/4image.svg",
         price: 6,
         repas: "sur place",
