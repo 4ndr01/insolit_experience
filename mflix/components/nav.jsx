@@ -105,7 +105,7 @@ export default function NavComponent() {
                     <Link href="/logement/logement">
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300 cursor-pointer">Logement</p>
                     </Link>
-                    <Link href="/testPanier/test">
+                    <Link href="/activity/activity">
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300 cursor-pointer">Activités</p>
                     </Link>
                     <Link href="/panier/panier">

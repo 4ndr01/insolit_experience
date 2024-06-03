@@ -1,6 +1,117 @@
 
 const Activity = [
     {
+        id: 1,
+        name: "Cabane dans les arbres ",
+        position: "Paris",
+        content:
+            "Évadez-vous dans les hauteurs de la nature avec notre cabane dans les arbres : une oasis suspendue offrant confort et tranquillité.",
+        image: "/Cabane_1.jpg",
+        image2: "/4image.svg",
+        price: 112,
+        repas: "sur place",
+        nbSalleDeBain: 2,
+        wifi: "gratuit",
+        nbPersonne: 2,
+        category: "Culture",
+        avis: "Louise U : \"On a passé un séjour génial dans cette cabane perchée dans les arbres. C'est super calme et apaisant, idéal pour se reposer. La cabane est bien équipée et confortable, tout en restant rustique. Se réveiller avec le chant des oiseaux, c'est magique. Je recommande vraiment cette expérience unique !\"\n",
+        avis2:"Arthur L : \"C'était une escapade incroyable dans cette cabane dans les arbres. L'endroit est superbe, avec une vue magnifique sur la forêt. La cabane est charmante, propre et confortable. On se sent vraiment déconnecté du monde, parfait pour se détendre. Le personnel est très accueillant et serviable. Une expérience à refaire sans hésiter !\"\n"
+
+    },
+    {
+        id: 2,
+        name: "Ecolodge",
+        position: "Bordeaux",
+        content:
+            "Découvrez notre écolodge, une maison sur l'eau pour une escapade unique. Profitez de la tranquillité et de la beauté naturelle tout en flottant paisiblement. Réservez dès maintenant pour une expérience mémorable !",
+        image: "/Ecolodge.jpg",
+        image2: "/4image.svg",
+        price: 146,
+        repas: "sur place",
+        nbSalleDeBain: 1,
+        wifi: "gratuit",
+        nbPersonne: 3,
+        category: "Culture",
+        avis:"Zoé F. : \"Quelle expérience incroyable dans cet écolodge ! La sensation de flotter sur l'eau était tout simplement magique. La maison était confortable et bien équipée, et la vue depuis la terrasse était à couper le souffle. Une escapade vraiment inoubliable !\"\n",
+        avis2:"Louisa X. : \"J'ai adoré mon séjour dans cette maison sur l'eau. C'était tellement paisible et relaxant. La sensation d'être entouré par l'eau était unique, et j'ai apprécié chaque instant passé là-bas. Je recommande vivement cette expérience à tous ceux qui recherchent quelque chose de différent et de spécial.\"\n"
+
+    },
+    {
+        id: 3,
+        name: "Yourte",
+        position: "Nice",
+        content:
+            "Plongez dans un séjour unique et inoubliable en choisissant la yourte. Au cœur de la nature,  cette habitation traditionnelle mongole vous offrira une parfaite combinaison de confort moderne et d'authenticité. En famille, amis ou en couple, la yourte saura vous surprendre pour une nuit insolite inoubliable.\n" +
+            "\n",
+        image: "/Yourte.jpg",
+        image2: "/4image.svg",
+        price:  120,
+        repas: "sur place",
+        nbSalleDeBain: 3,
+        wifi: "gratuit",
+        nbPersonne: 4,
+        category: "Relaxation",
+        avis: "Daphné D. : \"Un séjour incroyable dans un cadre magnifique. La yourte est très bien équipée et la tranquillité est incomparable.\"\n",
+        avis2:"Bastien M. : \"Parfait pour une escapade romantique. Nous avons adoré le poêle à bois et le confort du lit.\"\n"
+
+    },
+    {
+        id: 4,
+        name: " bulle transparente\n",
+        position: "Lyon",
+        content:
+            "Laissez-vous envoûter par une nuit magique au beau milieu des étoiles avec notre bulle transparente. Située dans un cadre naturel exceptionnel, notre bulle offre une expérience unique, parfaite pour une escapade romantique ou une retraite paisible.\n" +
+            "\n",
+        image: "/Bulle_3.webp",
+        image2: "/4image.svg",
+        price: 150,
+        repas: "sur place",
+        nbSalleDeBain: 2,
+        wifi: "gratuit",
+        nbPersonne: 5,
+        category: "Sport",
+        avis:"Louise L. : \"Une expérience hors du commun. Voir les étoiles depuis son lit est simplement magique. Je recommande.\"\n",
+
+    },
+    {
+        id: 5,
+        name: "Chambre Troglodyte",
+        position: "Quimper",
+        content:
+            "Bienvenue dans notre logement troglodytique unique, niché au cœur de la nature. Plongez dans un cadre de vie authentique et enchanteur, où le charme des pierres se mêle à la sérénité des lieux. Notre demeure creusée dans la roche offre une atmosphère paisible et dépaysante, idéale pour se ressourcer loin de l'agitation. Savourez des moments de tranquillité sur la terrasse privative, avec une vue imprenable sur les paysages environnants.\n" +
+            "Que vous soyez amateur de nature ou en quête d'une escapade hors du commun, notre logement troglodytique vous promet une expérience inoubliable, où histoire et nature se rencontrent harmonieusement. Réservez dès maintenant pour vivre un séjour unique et enchanteur.\n",
+        image: "/ChambreTroglodyte.jpg",
+        image2: "/4image.svg",
+        price: 120,
+        repas: "sur place",
+        nbSalleDeBain: 1,
+        wifi: "gratuit",
+        nbPersonne: 6,
+        category: "Culture",
+        avis: "Laurence P. : \"Un séjour absolument magique ! Le cadre troglodytique est à la fois fascinant et reposant. La tranquillité des lieux et la beauté naturelle environnante nous ont permis de vraiment déconnecter. La terrasse avec vue imprenable est un véritable atout. Nous recommandons vivement cette expérience unique !\"\n",
+        avis2: "Garance Q.  :\"Un véritable havre de paix ! Le logement troglodytique offre une ambiance cosy et authentique. Nous avons adoré explorer les sentiers de randonnée à proximité et revenir chaque soir dans ce cocon de sérénité. Un endroit parfait pour se ressourcer et se reconnecter avec la nature.\"\n"
+    },
+    {
+        id: 6,
+        position: "Genève",
+        name: "Tipi authentique",
+        content:
+            "Offrez-vous une escapade unique en séjournant dans notre tipi authentique. Situé en pleine nature, ce logement insolite vous permet de vivre une expérience inoubliable, inspirée des traditions amérindiennes. Que vous soyez en quête d'aventure unique ou de détente, notre tipi vous offre un séjour mémorable au cœur de la nature.\n" +
+            "\n" +
+            "\n",
+        image: "/Tipiauthentique.jpg",
+        image2: "/4image.svg",
+        price: 100,
+        repas: "sur place",
+        nbSalleDeBain: 2,
+        wifi: "gratuit",
+        nbPersonne: 7,
+        category: "Sport",
+        avis: "Marie-Aude M.: \"Une expérience incroyable. Le tipi est confortable et l'ambiance est magique.\"\n",
+        avis2: "René R.: \"Parfait pour se déconnecter et se reconnecter avec la nature. Les enfants ont adoré.\" \n"
+
+    },
+    {
         id: 7,
         name: "Roulotte en bois",
         position: "Nantes",
@@ -112,5 +223,5 @@ const Activity = [
 
 
 
-export default Activity
+export default Activity;
 
