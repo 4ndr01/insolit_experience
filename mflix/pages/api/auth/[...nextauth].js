@@ -1,92 +1,113 @@
 import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from "next-auth/providers/credentials";
 import User from "/models/user";
 import connectMongoDB from "/lib/mongodb";
-import bcrypt from 'bcrypt'; // Utilisation de bcrypt pour le hachage des mots de passe
+
+const bcrypt = require('bcrypt');
+
+
 
 const authOptions = {
+    secret: 'root',
+    // Configure one or more authentication providers
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
+
         }),
         CredentialsProvider({
             name: "credentials",
             credentials: {},
-            async authorize(credentials, req) { // Ajout de req pour obtenir l'URL de base
+            async authorize(credentials) {
                 const { email, password } = credentials;
+
+
 
                 try {
                     await connectMongoDB();
-                    const user = await User.findOne({ email });
+                    let user = null;
+                    const client = await User.findOne({ email });
 
-                    if (!user || !await bcrypt.compare(password, user.password)) {
-                        throw new Error("Invalid credentials"); // Erreur spécifique pour les identifiants invalides
+                    if (client) {
+                        user = client;
+                    }
+
+                    if (!user) {
+                        return null;
+                    }
+
+                    const passwordsMatch = await bcrypt.compare(password, user.password);
+                    if (!passwordsMatch) {
+                        return null;
                     }
 
                     return user;
                 } catch (error) {
-                    console.error("Error during authentication:", error);
-                    throw new Error("Authentication failed"); // Erreur générique pour les autres problèmes
+                    console.log("Error: ", error);
+                    return null;
                 }
             },
         }),
     ],
-    secret: process.env.NEXTAUTH_SECRET, // Secret important pour la sécurité
     session: {
         strategy: "jwt",
     },
     pages: {
-        signIn: "/",
+        signIn: "/", // Chemin de la page de connexion
     },
+
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({ user, account }) {
             if (account.provider === "google") {
+                const { name, email } = user;
                 try {
                     await connectMongoDB();
                     const userExists = await User.findOne({ email });
-
                     if (userExists) {
                         user.id = userExists._id;
                         user.role = userExists.role;
-                        return true; // Connexion réussie pour un utilisateur existant
+                        return userExists;
                     }
-
                     const newUser = new User({
-                        name: profile.name,
+                        name: name,
                         email: email,
                         isGoogleAccount: true,
                         isActive: true,
                     });
 
-                    await newUser.save();
-                    return true; // Connexion réussie pour un nouvel utilisateur
+                    const res = await newUser.save();
+                    if (res.status === 200 || res.status === 201) {
+                        return user;
+                    }
                 } catch (error) {
-                    console.error("Error during Google sign-in:", error);
-                    return false; // Échec de la connexion
+                    console.log(error);
                 }
             }
-            return true; // Autoriser la connexion pour d'autres fournisseurs
+            return user;
         },
         async jwt({ token, user }) {
             if (user) {
                 token.role = user.role;
-                token.id = user.id;
             }
             return token;
         },
+
         async session({ session, token }) {
-            session.user.role = token.role;
-            session.user.id = token.id;
+            if (session?.user) {
+                session.user.role = token.role;
+                session.user.userId = token.sub;
+            }
             return session;
         },
     },
 };
 
+
+
+
 const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };
-
-export default handler;
-
+export default NextAuth(authOptions);
