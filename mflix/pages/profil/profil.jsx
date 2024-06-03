@@ -72,10 +72,6 @@ const Profile = () => {
         }
     };
 
-    const handleFileChange = (e) => {
-        setSelectedFile(e.target.files[0]);
-    };
-
 
     const handleDelete = async (commandeId) => {
         if (confirm("Êtes-vous sûr de vouloir supprimer ce voyage ?")) { // Confirmation de suppression
@@ -126,7 +122,7 @@ const Profile = () => {
                                 onChange={(e) => setNewPseudo(e.target.value)}
                                 className="bg-gray-100 border border-gray-300 focus:ring focus:ring-blue-500 rounded-md p-2"
                             />
-                            <Button className="mt-2 bg-amber-400" onClick={handleSaveClick}>Modifier</Button>
+                            <Button className="mt-2 bg-amber-400 text-black " onClick={handleSaveClick}>Modifier</Button>
                         </>
                     ) : (
                         <>
