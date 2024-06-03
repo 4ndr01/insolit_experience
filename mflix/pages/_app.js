@@ -1,10 +1,9 @@
-import './output.css';
 import './styles.css';
 import '../components/activity.css';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { SessionProvider } from "next-auth/react"
 import { UserProvider } from '../context/userContext';
-import '../pages/output.css';
+import './output.css';
 import "../nav.css";
 import "../components/voyages/list.css";
 import "../components/footer.css";
