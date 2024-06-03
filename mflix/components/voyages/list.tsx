@@ -24,7 +24,7 @@ const Voyages = [
         position: "Bordeaux",
         content:
             "Découvrez notre écolodge, une maison sur l'eau pour une escapade unique. Profitez de la tranquillité et de la beauté naturelle tout en flottant paisiblement. Réservez dès maintenant pour une expérience mémorable !",
-        image: "/Ecolodge.webp",
+        image: "/Ecolodge.jpg",
         image2: "/4image.svg",
         price: 146,
         repas: "sur place",
@@ -117,7 +117,7 @@ const Voyages = [
         position: "Nantes",
         content:
             "Évadez-vous du quotidien en séjournant dans notre charmante roulotte en bois. Située en pleine nature, cette roulotte vous offre une expérience unique et authentique, combinant le charme d’un habitat nomade avec tout le confort moderne. Parfait pour une escapade romantique ou une aventure familiale, notre roulotte en bois est l’option idéale pour ceux qui recherchent un séjour insolite.\n",
-        image: "/Roulotteenbois.webp",
+        image: "/Roulotteenbois.jpg",
         image2: "/4image.svg",
         price: 1500,
         repas: "sur place",
@@ -154,7 +154,7 @@ const Voyages = [
         content:
             "Découvrez les Catacombes de Paris, un lieu fascinant et mystérieux sous la capitale. Explorez ces tunnels historiques remplis d'ossements et apprenez-en plus sur l'histoire de Paris. Une visite unique qui vous plongera dans les profondeurs de la ville et de son passé.\n" +
             "\n",
-        image: "/CatacombesdeParis.webp",
+        image: "/LescatacombesdeParis.jpg",
         image2: "/4image.svg",
         price: 29,
         repas: "sur place",
@@ -173,7 +173,7 @@ const Voyages = [
         content:
             "Description : \n" +
             "Découvrez le Colorado Provençal, un site naturel exceptionnel situé en plein cœur de la Provence. Ses roches aux couleurs flamboyantes, allant du jaune au rouge intense, offrent un spectacle époustouflant. Parfait pour des randonnées et des promenades, ce lieu unique en France vous plonge dans des paysages dignes de l'Ouest américain. Idéal pour les amoureux de la nature et de la photographie, le Colorado Provençal est une escapade incontournable pour profiter de la beauté et de la diversité.\n",
-        image: "/ColoradoProvençal.webp",
+        image: "/LECOLORADOPROVENÇAL.jpg",
         image2: "/4image.svg",
         price: 6,
         repas: "sur place",
