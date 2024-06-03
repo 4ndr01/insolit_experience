@@ -29,7 +29,7 @@ const Main = () => {
                  style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)' }}>
                 <section className="container mx-auto p-4">
                     <SearchBarWithVoyagesList voyages={Voyages} />
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 rounded-full" >
+                    <div className=" rounded-full" >
                         <div>
                             <VoyagesList />
                             <News />
