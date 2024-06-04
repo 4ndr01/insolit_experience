@@ -1,24 +1,47 @@
-// models/Voyage.js
-
 const mongoose = require('mongoose');
 
-// Définition du schéma pour le modèle de Voyage
-const voyageSchema = new mongoose.Schema({
-    destination: {
+const voyageReserveSchema = new mongoose.Schema({destination: {
         type: String,
+        required: false,
+    },
+    departDate: {
+        type: Date,
+        required: false,
+    },
+    retourDate: {
+        type: Date,
+        required: false,
+    },
+    nombrePersonnes: {
+        type: String,
+        required: false,
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
-    description: {
+    image: {
         type: String,
-        default: ''
+        required: false,
     },
-    imageUrl: {
+    etat: {
         type: String,
-        default: ''
-    }
+        enum: ["En attente", "En cours", "Terminé"],
+        default: "En attente",
+    },
+    imageUrl: { type: String } // Champ pour le chemin d'accès de l'image
+
 });
 
-// Création du modèle de Voyage à partir du schéma
-const Voyage = mongoose.model('Voyage', voyageSchema);
+voyageReserveSchema.pre(/^find/, function (next) {
+    this.populate({
+        path: "userId", // Mettez à jour le chemin pour correspondre à votre schéma
+        select: "name email _id",
+    });
+    next();
+});
 
-module.exports = Voyage;
+const VoyageReserve = mongoose.model('VoyageReserve', voyageReserveSchema);
+
+module.exports = VoyageReserve;

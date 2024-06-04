@@ -4,10 +4,15 @@ import NavComponent from '../../components/nav';
 import Footer from '../../components/footer';
 import { XCircleIcon } from '@heroicons/react/24/solid';
 import { signOut, useSession } from "next-auth/react";
-import { Button, Modal, Input, Label } from "flowbite-react";
+import {Button,  Label} from "flowbite-react";
+import * as formState from "zod";
 import { useForm } from 'react-hook-form';
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Modal } from "flowbite-react";
+import Voyages from "../../components/voyages/list";
+import id from "../voyage/[id]";
+
 
 
 const PanierPage = () => {
@@ -21,22 +26,21 @@ const PanierPage = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [isFormValid, setIsFormValid] = useState(false);
-
+    const voyage = Voyages.find(voyage => String(voyage.id) === id);
 
     const [voyagesInPanier, setVoyagesInPanier] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
-    // Schéma de validation avec Zod
+
     const validationSchema = z.object({
         nom: z.string().min(2, "Le nom doit comporter au moins 2 caractères"),
         prenom: z.string().min(2, "Le prénom doit comporter au moins 2 caractères"),
         email: z.string().email("Adresse e-mail invalide"),
+        telephone: z.string().optional(),
+        adresse: z.string().optional(),
+        commentaires: z.string().optional(),
     });
 
-    // Utilisation de react-hook-form avec le resolver Zod
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: zodResolver(validationSchema),
-    });
 
     useEffect(() => {
         const panierData = localStorage.getItem('panier');
@@ -45,6 +49,14 @@ const PanierPage = () => {
         }
     }, []);
 
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: zodResolver(validationSchema),
+    });
+
     //Fonction de suppression du voyage
     const removeFromPanier = (voyageId) => {
         const updatedPanier = voyagesInPanier.filter(voyage => voyage.id !== voyageId);
@@ -52,48 +64,20 @@ const PanierPage = () => {
         localStorage.setItem('panier', JSON.stringify(updatedPanier));
     };
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        if (!isFormValid) return;
-
-        try {
-            const response = await fetch("/api/travel/travel", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userId,
-                    name,
-                    email,
-                    destination,
-                    departDate,
-                    retourDate,
-                    nombrePersonnes,
-
-                }),
-
-            });
-            setShowModal(false); // Fermer la modal après la soumission
-
-            if (response.ok) {
-                await router.push("/success/success");
-                alert("Votre voyage a été enregistré avec succès !");
-
-            }
+    useEffect(() => {
+        if (session) {
+            setUserId(session.user.userId);
+            setName(session.user.name || "");
+            setEmail(session.user.email || "");
         }
-        catch (error) {
-            console.error("An error occurred:", error);
-        }
-    }
+    }, [session]);
 
-    const handleValidateClick = () => {
-        if (status === 'unauthenticated') {
-            router.push('/login/login').then(r => console.log(r))
-            return;
+    useEffect(() => {
+        if (voyage) {
+            setDestination(voyage.name || '');
         }
-        setShowModal(true);
-    };
+    }, [voyage]);
+
 
     // Fonction pour nettoyer l'entrée
     const sanitizeInput = (input) => {
@@ -110,9 +94,57 @@ const PanierPage = () => {
         return text.length >= 5;
     };
 
+    // Effet pour valider le formulaire
+    useEffect(() => {
+        setIsFormValid(name && email && destination && validateTextArea(destination));
+    }, [name, email, destination]);
+
+
+
+    const submit = async (e) => {
+        e.preventDefault();
+        if (!isFormValid) return;
+
+        try {
+            const response = await fetch("/api/command/command", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+
+                    userId,
+                    voyages: voyagesInPanier,
+
+
+
+                }),
+            });
+
+            if (response.ok) {
+                await router.push("/success/success");
+            } else {
+                console.error("Échec de la soumission du formulaire");
+            }
+        } catch (error) {
+            console.error("Erreur lors de la soumission du formulaire", error);
+        }
+    };
+
+    const handleValidateClick = () => {
+        if (status === 'unauthenticated') {
+            router.push('/login/login').then(r => console.log(r))
+            return;
+        }
+        setShowModal(true);
+    };
+
+
+
     return (
-        <>
-            <NavComponent />
+        <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+
+            <NavComponent/>
             <div className="container mx-auto mt-10">
                 <h1 className="text-3xl font-bold mb-6 text-center">Mon Panier</h1>
 
@@ -135,7 +167,6 @@ const PanierPage = () => {
                         ))}
                     </ul>
                 )}
-
                 {voyagesInPanier.length > 0 && (
                     <div className="flex justify-end mt-8">
                         <Button onClick={handleValidateClick} className="bg-blue-500 text-black px-4 py-2 rounded-lg">
@@ -146,72 +177,65 @@ const PanierPage = () => {
                         <Modal show={showModal} onClose={() => setShowModal(false)}>
                             <Modal.Header>Validez votre panier</Modal.Header>
                             <Modal.Body>
-                                <form onSubmit={handleSubmit(onSubmit)}>
-                                    <label htmlFor="destination" className="block mt-4">
-                                        Destination
-                                    </label>
-                                    <textarea
-                                        id="destination"
-                                        name="destination"
-                                        value={destination}
-                                        onChange={handleTextAreaChange}
-                                        className="w-full p-2 border border-gray-300 rounded-md"
-                                    ></textarea>
-                                    <label htmlFor="departDate" className="block mt-4">
-                                        Date de départ
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="departDate"
-                                        name="departDate"
-                                        value={departDate}
-                                        onChange={(e) => setDepartDate(e.target.value)}
-                                        className="w-full p-2 border border-gray-300 rounded-md"
-                                    />
-                                    <label htmlFor="retourDate" className="block mt-4">
-                                        Date de retour
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="retourDate"
-                                        name="retourDate"
-                                        value={retourDate}
-                                        onChange={(e) => setRetourDate(e.target.value)}
-                                        className="w-full p-2 border border-gray-300 rounded-md"
-                                    />
-                                    <label htmlFor="nombrePersonnes" className="block mt-4">
-                                        Nombre de personnes
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="nombrePersonnes"
-                                        name="nombrePersonnes"
-                                        value={nombrePersonnes}
-                                        onChange={(e) => setNombrePersonnes(e.target.value)}
-                                        className="w-full p-2 border border-gray-300 rounded-md"
-                                    />
-                                    <button type="submit"
-                                            className="mt-4 w-full bg-primary text-white p-3 rounded-md button">
-                                        Réserver maintenant
-                                    </button>
-                                </form>
+                                <form onSubmit={submit}>
+                                <label htmlFor="destination" className="block mt-4">
+                                    Destination
+                                </label>
+                                <textarea
+                                    id="destination"
+                                    name="destination"
+                                    value={destination}
+                                    onChange={handleTextAreaChange}
+                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                ></textarea>
+                                <label htmlFor="departDate" className="block mt-4">
+                                    Date de départ
+                                </label>
+                                <input
+                                    type="date"
+                                    id="departDate"
+                                    name="departDate"
+                                    value={departDate}
+                                    onChange={(e) => setDepartDate(e.target.value)}
+                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                />
+                                <label htmlFor="retourDate" className="block mt-4">
+                                    Date de retour
+                                </label>
+                                <input
+                                    type="date"
+                                    id="retourDate"
+                                    name="retourDate"
+                                    value={retourDate}
+                                    onChange={(e) => setRetourDate(e.target.value)}
+                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                />
+                                <label htmlFor="nombrePersonnes" className="block mt-4">
+                                    Nombre de personnes
+                                </label>
+                                <input
+                                    type="number"
+                                    id="nombrePersonnes"
+                                    name="nombrePersonnes"
+                                    value={nombrePersonnes}
+                                    onChange={(e) => setNombrePersonnes(e.target.value)}
+                                    className="w-full p-2 border border-gray-300 rounded-md"
+                                />
+                                <button type="submit" className="mt-4 w-full bg-primary text-white p-3 rounded-md button">
+                                    Réserver maintenant
+                                </button>
+                            </form>
+
                             </Modal.Body>
                         </Modal>
                     </div>
                 )}
 
-                {voyagesInPanier.length > 0 && (
-                    <div className="flex justify-end mt-8">
-
-                        <Button className="bg-blue-500 text-black px-4 py-2 rounded-lg">
-                            valider
-                        </Button>
-                    </div>
-                )}
             </div>
             <Footer/>
-        </>
+
+        </div>
     );
-};
+}
 
 export default PanierPage;

@@ -1,7 +1,6 @@
 import connectMongoDB from "../../../lib/mongodb";
 import Travel from "../../../models/travel";
 import User from "../../../models/user";
-import mongoose from "mongoose"; // Importez le modèle utilisateur
 
 export default async function POST(request, response) {
     const { destination, departDate, retourDate, nombrePersonnes, userId,image } = request.body;

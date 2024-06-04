@@ -47,6 +47,13 @@ const userSchema = new Schema(
                 required: true,
             },
         ],
+        panier: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "VoyageReserve",
+                required: true,
+            },
+        ],
 
     },
     { timestamps: true }
