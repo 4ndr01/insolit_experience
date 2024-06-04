@@ -1,5 +1,6 @@
+
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import Voyages from '../../components/voyages/list';
 import NavComponent from '../../components/nav';
 import MontageForm from '../../components/form_travel/form_travel';
@@ -9,25 +10,52 @@ const VoyageDetailPage = () => {
     const router = useRouter();
     const { id } = router.query;
     const [panier, setPanier] = useState([]);
+    const [voyagesInPanier, setVoyagesInPanier] = useState([]);
 
-    // Trouver le voyage correspondant à l'ID dans le tableau Voyages
-    const voyage = Voyages.find((voyage) => String(voyage.id) === id);
 
+    // Trouver le voyage correspondant à l'ID
+    const voyage = Voyages.find(v => String(v.id) === id);
 
     if (!voyage) {
         return <p>Voyage non trouvé</p>;
     }
 
-    const addToPanier = (voyage) => {
-        // Ajouter le voyage au panier
-        setPanier([...panier, voyage]);
+    const addToPanier = () => {
+        // Vérification si le voyage est déjà dans le panier
+        if (panier.some(item => item.id === voyage.id)) {
+            alert("Ce voyage est déjà dans votre panier.");
+            return;
+        }
 
-        // Naviguer vers la page du panier avec les voyages actuels dans le panier
-        router.push({
-            pathname: '/panier/panier',
-            query: {panier: JSON.stringify([...panier, voyage])},
-        }).then(r => console.log(r));
+        setPanier([...panier, voyage]);
+        const panierData = localStorage.getItem('panier');
+        const panierActuel = panierData ? JSON.parse(panierData) : [];
+
+        if (panierActuel.some(item => item.id === voyage.id)) {
+            alert("Ce voyage est déjà dans votre panier.");
+            return;
+        }
+
+        const nouveauPanier = [...panierActuel, voyage];
+        localStorage.setItem('panier', JSON.stringify(nouveauPanier));
+        // Notification plus explicite pour l'utilisateur
+        alert("Le voyage a été ajouté au panier !");
+
+        // Redirection vers le panier après un court délai (optionnel)
+        setTimeout(() => {
+            router.push({
+                pathname: '/panier/panier',
+                query: { panier: JSON.stringify([...panier, voyage]) },
+            });
+        }, 500); // 500ms
     };
+
+    useEffect(() => {
+        const panierData = localStorage.getItem('panier');
+        if (panierData) {
+            setVoyagesInPanier(JSON.parse(panierData));
+        }
+    }, []);
 
     return (
         <>
@@ -78,13 +106,19 @@ const VoyageDetailPage = () => {
                         <div className="mt-8">
                             <h2 className="text-xl font-semibold text-gray-800 ml-4">Réservation</h2>
                             <MontageForm id={id}/>
+                            <button
+                                onClick={addToPanier}
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                            >
+                                Ajouter au panier
+                            </button>
                         </div>
                     </div>
 
                     <div className="mt-8">
                         <h2 className="text-xl font-semibold text-gray-800 ml-4">Avis</h2>
                         <div className="bg-white p-4 rounded-lg mt-4">
-                            <div className="flex items-center">
+                        <div className="flex items-center">
                                 <img src="/Icône%20profil.png" alt="avatar" className="w-12 h-12 rounded-full"/>
                                 <div className="ml-4">
 

@@ -1,11 +1,17 @@
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 const PanierPage = () => {
     const router = useRouter();
-    const { panier } = router.query;
+    const [voyagesInPanier, setVoyagesInPanier] = useState([]);
 
-    // Convertir les voyages en JSON (si nécessaire)
-    const voyagesInPanier = panier ? JSON.parse(panier) : [];
+
+    useEffect(() => {
+        const panierData = localStorage.getItem('panier');
+        if (panierData) {
+            setVoyagesInPanier(JSON.parse(panierData));
+        }
+    }, []);
 
     return (
         <div>
@@ -13,7 +19,6 @@ const PanierPage = () => {
             <ul>
                 {voyagesInPanier.map((voyage, index) => (
                     <li key={index}>
-
                         <img src={voyage.image} alt={voyage.name} />
                         <p>{voyage.name}</p>
                         <p>{voyage.price} €</p>
