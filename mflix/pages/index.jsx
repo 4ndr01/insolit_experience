@@ -3,7 +3,8 @@ import NavComponent from "../components/nav.jsx";
 import VoyagesList from "../components/voyages/list_voyageComponent";
 import News from "../components/voyages/newsComponent";
 import Packs from "../components/voyages/packs";
-import SearchBarWithVoyagesList from "../components/searchbar";
+import SearchBarWithVoyagesList from "../components/searchbar.js";
+
 import Footer from "../components/footer";
 import Voyages from "../components/voyages/list";
 

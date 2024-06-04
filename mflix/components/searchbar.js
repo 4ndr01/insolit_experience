@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import Link from "next/link";
 
-const SearchBarWithVoyagesList: React.FC<{ voyages: any[] }> = ({ voyages }) => {
+
+const SearchBarWithVoyagesList = ({ voyages }) => {
+    // Corps de votre composant (logique et rendu JSX)
     const [searchQuery, setSearchQuery] = useState('');
     const [showVoyages, setShowVoyages] = useState(false);
 
-    const handleSearch = (query: string) => {
-        setSearchQuery(query);
+    const handleSearch = ( string) => {
+        setSearchQuery(string);
         setShowVoyages(true); // Afficher les voyages lorsque la recherche est effectuée
     };
 

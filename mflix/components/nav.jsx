@@ -28,7 +28,7 @@ export default function NavComponent() {
         };
     }, [router]);
 
-    // Function to toggle mobile menu
+
 
 
     return (

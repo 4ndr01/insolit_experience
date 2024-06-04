@@ -28,9 +28,10 @@ const VoyagesList = () => {
         };
     }, []);
 
-    const goToGroup = (groupIndex: SetStateAction<number>) => {
+    function goToGroup(groupIndex) {
+
         setActiveGroup(groupIndex);
-    };
+    }
 
     const nextGroup = () => {
         setActiveGroup((prevGroup) => (prevGroup === totalGroups - 1 ? 0 : prevGroup + 1));

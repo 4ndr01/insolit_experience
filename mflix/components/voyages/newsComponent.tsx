@@ -33,6 +33,7 @@ const News = () => {
     };
 
 
+
     const nextGroup = () => {
         setActiveGroup((prevGroup) => (prevGroup === totalGroups - 1 ? 0 : prevGroup + 1));
     };

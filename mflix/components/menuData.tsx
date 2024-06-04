@@ -1,8 +1,7 @@
-// @ts-ignore
-import { Menu } from "@/types/menu";
 
-const menuData: Menu[] = [
 
+
+const menuData = [
     {
         id: 7,
         title: "Gestion",
