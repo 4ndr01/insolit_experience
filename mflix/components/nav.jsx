@@ -28,16 +28,36 @@ export default function NavComponent() {
         };
     }, [router]);
 
+    const [isSticky, setIsSticky] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsSticky(true);
+            } else {
+                setIsSticky(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
 
 
     return (
         <>
             {loading && <Loading />}
-            <nav className="md:px-6 lg:px-8 xl:px-10">
+            <nav
+                className={`md:px-6 lg:px-8 xl:px-10 transition-all duration-300 ${
+                    isSticky ? "fixed top-0 z-50 w-full bg-white dark:bg-dark" : ""
+                }`}
+                >
                 <div className="container flex items-center justify-between">
                     <Link href="/">
-                        <img src="/logo.svg" alt="logo" className="h-25 w-25 cursor-pointer"/>
+                        <img src="/Logo2.svg" alt="logo" className="h-20 w-20 cursor-pointer"/>
                     </Link>
 
                     <ul className="block lg:flex lg:space-x-12">

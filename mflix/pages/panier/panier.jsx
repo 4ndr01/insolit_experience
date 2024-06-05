@@ -139,6 +139,7 @@ const PanierPage = () => {
         setShowModal(true);
     };
 
+    const prixTotal = voyagesInPanier.reduce((total, voyage) => total + voyage.price, 0);
 
 
     return (
@@ -154,7 +155,8 @@ const PanierPage = () => {
                     <ul className="space-y-4">
                         {voyagesInPanier.map((voyage, index) => (
                             <li key={index} className="flex items-start bg-white rounded-lg shadow p-4">
-                                <img src={voyage.image} alt={voyage.name} className="w-24 h-24 rounded-md object-cover mr-4"/>
+                                <img src={voyage.image} alt={voyage.name}
+                                     className="w-24 h-24 rounded-md object-cover mr-4"/>
                                 <div>
                                     <h2 className="text-lg font-medium">{voyage.name}</h2>
                                     <p className="text-gray-600">Lieu: {voyage.location}</p>
@@ -163,8 +165,11 @@ const PanierPage = () => {
                                         <XCircleIcon className='w-6 h-6'/>
                                     </button>
                                 </div>
+
                             </li>
                         ))}
+                        <p className="text-lg font-bold mr-4">Prix total: {prixTotal} €</p>
+
                     </ul>
                 )}
                 {voyagesInPanier.length > 0 && (
