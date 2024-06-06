@@ -21,6 +21,8 @@ jobs:
         with:
           node-version: '20' 
           cache: 'npm' # Active la mise en cache des dépendances
+          cache-dependency-path: '**/package-lock.json'  
+
 
       - name: Installer les dépendances
         run: npm ci  # Utilisez 'npm ci' en CI
