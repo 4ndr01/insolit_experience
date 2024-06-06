@@ -19,7 +19,7 @@ jobs:
           node-version: '20' 
 
       - name: Installer les dépendances
-        run: npm ci 
+        run: npm install 
 
       - name: Build
         run: npm run build
