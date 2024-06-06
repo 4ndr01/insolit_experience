@@ -1,5 +1,6 @@
 import Commande from "../../../models/travel";
 import User from "../../../models/user";
+import VoyageReserve from "../../../models/voyage";
 import connectMongoDB from "../../../lib/mongodb";
 
 export default async function handler(req, res) {
@@ -11,7 +12,9 @@ export default async function handler(req, res) {
         case "GET":
             try {
                 const userCommands = await Commande.find({ userId: userId });
-                return res.status(200).json({ commande: userCommands });
+                const usersPanier = await  VoyageReserve.find({ userId: userId });
+
+                return res.status(200).json({ commande: userCommands, panier: usersPanier });
             } catch (error) {
                 console.error(error);
                 return res.status(500).json({

@@ -34,14 +34,11 @@ const voyageReserveSchema = new mongoose.Schema({destination: {
 
 });
 
-voyageReserveSchema.pre(/^find/, function (next) {
-    this.populate({
-        path: "userId", // Mettez à jour le chemin pour correspondre à votre schéma
-        select: "name email _id",
-    });
-    next();
-});
+let VoyageReserve;
+if (mongoose.models.VoyageReserve) {
+    VoyageReserve = mongoose.models.VoyageReserve; // Utilisez le modèle existant
+} else {
+    VoyageReserve = mongoose.model('VoyageReserve', voyageReserveSchema); // Créez le modèle s'il n'existe pas
+}
 
-const VoyageReserve = mongoose.model('VoyageReserve', voyageReserveSchema);
-
-module.exports = VoyageReserve;
+export default VoyageReserve;

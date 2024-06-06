@@ -42,6 +42,7 @@ try {
 
   });
 
+
   commandeSchema.pre(/^find/, function (next) {
     this.populate({
       path: "userId", // Mettez à jour le chemin pour correspondre à votre schéma

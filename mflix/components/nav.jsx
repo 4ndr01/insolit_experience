@@ -51,7 +51,7 @@ export default function NavComponent() {
         <>
             {loading && <Loading />}
             <nav
-                className={`md:px-6 lg:px-8 xl:px-10 transition-all duration-300 ${
+                className={`md:px-6 lg:px-8 xl:px-10 transition-all duration-300 h-35 ${
                     isSticky ? "fixed top-0 z-50 w-full bg-white dark:bg-dark" : ""
                 }`}
                 >

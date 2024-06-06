@@ -14,6 +14,7 @@ const Profile = () => {
     const [userData, setUserData] = useState(null);
     const [error, setError] = useState(null);
     const [userCommands, setUserCommands] = useState([]);
+    const [userPanier, setUserPanier] = useState([]);
     const [image, setImage] = useState(null);
     const [users, setUsers] = useState({});
     const [selectedFile, setSelectedFile] = useState(null);
@@ -43,6 +44,7 @@ const Profile = () => {
             const data = await response.json();
             setUserData(data);
             setUserCommands(data.commande);
+            setUserPanier(data.panier);
             setImage(data.imageFond);
         } catch (error) {
             setError(error.message);
@@ -122,7 +124,8 @@ const Profile = () => {
                                 onChange={(e) => setNewPseudo(e.target.value)}
                                 className="bg-gray-100 border border-gray-300 focus:ring focus:ring-blue-500 rounded-md p-2"
                             />
-                            <Button className="mt-2 bg-amber-400 text-black " onClick={handleSaveClick}>Modifier</Button>
+                            <Button className="mt-2 bg-amber-400 text-black "
+                                    onClick={handleSaveClick}>Modifier</Button>
                         </>
                     ) : (
                         <>
@@ -145,11 +148,13 @@ const Profile = () => {
                             </span>{" "}
                             {error}
                         </span>
-                        </Alert>
-                        {error.startsWith("Votre pseudo") && ( // Afficher le bouton de déconnexion uniquement si le pseudo a été mis à jour
-                            <Button onClick={() => { signOut().then(r => router.push('/login/login')) }} className="mt-2">
-                                Se reconnecter
-                            </Button>
+                            </Alert>
+                            {error.startsWith("Votre pseudo") && ( // Afficher le bouton de déconnexion uniquement si le pseudo a été mis à jour
+                                <Button onClick={() => {
+                                    signOut().then(r => router.push('/login/login'))
+                                }} className="mt-2">
+                                    Se reconnecter
+                                </Button>
 
 
                             )}
@@ -197,8 +202,41 @@ const Profile = () => {
                         </ul>
                     )}
                 </div>
+                <div className="container mx-auto mt-8 px-4">
+                    <h2 className="text-3xl font-bold mb-4">Vos Packs :</h2>
+                <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {userPanier.map((panier, index) => (
+                        <li
+                            key={index}
+                            className="bg-white p-4 shadow-md rounded-md relative"
+                        >
+                            <Link href={`/voyage/${panier.voyageId}`}>
+                                <img
+                                    src={panier.image}
+                                    alt={panier.destination}
+                                    className="w-full h-48 object-cover rounded-t-md"
+                                />
+                                <div className="p-4">
+                                    <p className="text-lg font-bold">Destination: {panier.destination}</p>
+                                    <p>Date de départ: {formatDate(panier.departDate)}</p>
+                                    <p>Date de retour: {formatDate(panier.retourDate)}</p>
+                                    <p>Nombre de personnes: {panier.nombrePersonnes}</p>
+                                </div>
+                            </Link>
+                            <div className="absolute bottom-2 right-2">
+                                <Button
+                                    color="red"
+                                    onClick={() => handleDelete(panier._id)}
+                                >
+                                    Supprimer
+                                </Button>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+                </div>
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 };
