@@ -72,7 +72,7 @@ const VoyageDetailPage = () => {
                     <div className="w-full md:w-1/2 mr">
                         <div className="container">
                             <h1 className="text-3xl md:text-4xl font-bold text-gray-800">{voyage.name}</h1>
-                            <p className="text-lg text-gray-700 mt-2">Lieu : {voyage.location}</p>
+                            <p className="text-lg text-gray-700 mt-2">Lieu : {voyage.position}</p>
                             <p className="text-gray-800 mt-4">{voyage.content}</p>
                             <div className="flex items-center mt-4">
                                 <img src="/Frame85.svg" alt="nuage" className="w-9 h-9"/> <p
