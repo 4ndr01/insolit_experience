@@ -3,26 +3,36 @@ name: Next.js CI
 on:
   push:
     branches:
-      - main  
+      - main  # Déclencher sur les push vers la branche main
 
 jobs:
   build-and-test:
-    runs-on: macos-latest 
+    defaults:
+      run:
+        working-directory: /insolit_experience2/mflix  # Spécifie le répertoire de travail correct
+    runs-on: ubuntu-latest  
 
     steps:
       - name: Checkout du code
         uses: actions/checkout@v3
-
+        
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20' 
+          cache: 'npm' # Active la mise en cache des dépendances
 
       - name: Installer les dépendances
-        run: npm install 
+        run: npm ci  # Utilisez 'npm ci' en CI
 
       - name: Build
         run: npm run build
 
       - name: Exécuter les tests
         run: npm test
+
+      # (Optionnel) Ajouter d'autres étapes :
+      # - name: Lint
+      #   run: npm run lint
+      # - name: Déployer
+      #   run: npm run deploy 
