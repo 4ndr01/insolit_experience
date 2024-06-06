@@ -9,6 +9,8 @@ import "../components/voyages/list.css";
 import "../components/footer.css";
 import "../pages/voyage/id.css";
 import LoadingPage from "../components/loading";
+import { Toaster } from 'react-hot-toast';
+
 
 
 
@@ -24,6 +26,7 @@ function MyApp({ Component, pageProps }) {
             <SessionProvider session={pageProps.session}>
                 <UserProvider>
                     <Component {...pageProps} />
+                    <Toaster />
                 </UserProvider>
             </SessionProvider>
 

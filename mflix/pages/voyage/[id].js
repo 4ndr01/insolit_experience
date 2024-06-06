@@ -5,6 +5,8 @@ import Voyages from '../../components/voyages/list';
 import NavComponent from '../../components/nav';
 import MontageForm from '../../components/form_travel/form_travel';
 import Footer from '../../components/footer';
+import toast from 'react-hot-toast';
+
 
 const VoyageDetailPage = () => {
     const router = useRouter();
@@ -27,8 +29,13 @@ const VoyageDetailPage = () => {
         localStorage.setItem('panier', JSON.stringify(nouveauPanier));
 
         // Notification et redirection (optionnel)
-        alert("Le voyage a été ajouté au panier !");
+        toast('Voyage ajouté au panier', {
+            icon: '🛒',
+            duration: 2000,
+        }
+        );
         // ... (code de redirection optionnel)
+        router.push('/').then(r => r);
     };
 
 

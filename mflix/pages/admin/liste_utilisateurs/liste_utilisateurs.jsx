@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import withAuth from "../../../midleware/withAuth";
 import NavComponent from "../../../components/nav";
 import Footer from "../../../components/footer";
+import toast from 'react-hot-toast';
 
 function UsersManagement() {
     const [users, setUsers] = useState([]);
@@ -53,18 +54,26 @@ function UsersManagement() {
     };
 
     const deleteUser = async (id) => {
+        const toastId = toast.loading("Suppression en cours...", {
+            duration: 3000,
+        });
         try {
             const res = await fetch(`/api/deleteUser/${id}`, {
                 method: "DELETE",
             });
 
             if (!res.ok) {
+                toast.error("Échec de la suppression de l'utilisateur", {id: toastId}); // Toast d'erreur
                 throw new Error("Échec de la suppression de l'utilisateur");
+            } else {
+                toast.success("Utilisateur supprimé avec succès", {id: toastId}); // Toast de succès
             }
-            console.log(res);
-            await loadUsers(); // Recharge la liste des utilisateurs après la suppression
-        } catch (error) {
-            console.error("Erreur lors de la suppression de l'utilisateur: ", error);
+        }
+        catch (error) {
+            console.error("Error deleting user: ", error);
+        }
+        finally {
+            loadUsers();
         }
     };
 
