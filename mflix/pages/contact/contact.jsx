@@ -4,6 +4,7 @@ import {useRouter} from "next/router";
 import {useSession} from "next-auth/react";
 import NavComponent from "../../components/nav";
 import Footer from "../../components/footer";
+import toast from "react-hot-toast";
 
 const sanitizeInput = (input) => {
 
@@ -49,7 +50,6 @@ export default function Contact() {
         setIsFormValid(
             formData.name &&
             formData.email &&
-            formData.telephone &&
             formData.message
         );
     }, [formData]);
@@ -63,6 +63,10 @@ export default function Contact() {
         }
 
         try {
+            const toastId = toast.loading("Suppression en cours...", {
+                icon: "🚀",
+                duration: 3000,
+            });
             const requestBody = JSON.stringify(formData);
             const response = await fetch("/api/contact/contact", {
                 method: "POST",
@@ -73,22 +77,33 @@ export default function Contact() {
             });
 
             if (response.ok) {
+                toast.success("Message envoyé avec succès", {
+                    id: toastId,
+
+                });
                 router.push("/");
                 // Optionnel : vider le formulaire après envoi
                 setFormData({
                     name: session?.user?.name || "",
                     email: session?.user?.email || "",
-                    telephone: "",
                     message: ""
                 });
             } else {
-                throw new Error("Échec de l'envoi du message");
+                toast("Échec de l'envoi du message", {
+                    id: toastId,
+                    icon: "❌",
+                    duration: 3000,
+                });
             }
-        } catch (error) {
-            console.error(error);
-            // Gestion d'erreur appropriée (afficher une alerte à l'utilisateur, etc.)
         }
-    };
+        catch (error) {
+            console.error("Erreur lors de l'envoi du message :", error);
+            toast.error("Erreur lors de l'envoi du message", {
+                id: toastId,
+                duration: 3000,
+            });
+        }
+    }
 
     return (
         <>
@@ -134,6 +149,13 @@ export default function Contact() {
                             onChange={handleInputChange}
                             className="w-full p-2 border border-gray-300 rounded-md"
                         />
+
+                        <button
+                            type="submit"
+                            className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4"
+                        >
+                            Envoyer
+                        </button>
 
 
 

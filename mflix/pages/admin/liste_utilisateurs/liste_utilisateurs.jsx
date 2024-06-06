@@ -3,12 +3,15 @@ import withAuth from "../../../midleware/withAuth";
 import NavComponent from "../../../components/nav";
 import Footer from "../../../components/footer";
 import toast from 'react-hot-toast';
+import {XCircleIcon} from "@heroicons/react/24/solid";
 
 function UsersManagement() {
     const [users, setUsers] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const [selectedUserId, setSelectedUserId] = useState(null);
+    const [selectedContactId, setSelectedContactId] = useState(null);
     const [isDeleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
+    const [isDeleteConfirmOpen2, setDeleteConfirmOpen2] = useState(false);
     const [messages, setMessages] = useState([]);
     useEffect(() => {
         const fetchMessages = async () => {
@@ -52,6 +55,52 @@ function UsersManagement() {
             setLoading(false);
         }
     };
+
+
+
+
+
+
+
+
+
+
+    const deleteContact = async (id) => {
+        let toastId = null;
+        try {
+            toastId = toast.loading("Suppression en cours...", {
+                duration: 5000 // Durée plus longue pour refléter le temps de suppression
+            });
+            const res = await fetch(`/api/deleteContact/${id}`, {
+                method: "DELETE",
+            });
+
+            if (res.ok) {
+                toast.success("Contact supprimé avec succès", { id: toastId }); // Toast de succès
+                await loadUsers(); // Rechargement des utilisateurs APRÈS succès de la suppression
+            } else {
+                const errorData = await res.json(); // Récupération de l'erreur depuis l'API
+                toast.error(errorData.error || "Échec de la suppression du contact", { id: toastId }); // Toast d'erreur spécifique
+            }
+        } catch (error) {
+            console.error("Erreur inattendue lors de la suppression du contact:", error); // Log de l'erreur complète pour le débogage
+            toast.error("Une erreur inattendue s'est produite.", { id: toastId }); // Toast d'erreur générique pour l'utilisateur
+        }
+
+
+
+
+}
+
+    const handleDeleteClick2 = (id) => {
+        setSelectedContactId(id);
+    }
+        const confirmDelete2 = async () => {
+            await deleteContact(selectedContactId);
+            setDeleteConfirmOpen(false);
+        };
+
+
 
     const deleteUser = async (id) => {
         const toastId = toast.loading("Suppression en cours...", {
@@ -138,17 +187,53 @@ function UsersManagement() {
                 </section>
                 <section className="container mx-auto mt-8">
                     <h2 className="text-2xl font-bold mb-4 text-white">Messages des utilisateurs :</h2>
-                    <ul>
+
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                De
+                            </th>
+                            <th scope="col"
+                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Message
+                            </th>
+                            <th scope="col" className="relative px-6 py-3">
+                                <span className="sr-only">Supprimer</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
                         {messages.map((message) => (
-                            <li key={message._id} className="mb-4 p-4 border rounded-md">
-                                <p className="font-bold">De : {message.nom} ({message.email})</p>
-                                <p>{message.message}</p>
-                            </li>
+                            <tr key={message._id}>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {message.nom} ({message.email})
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{message.message}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <button onClick={() => handleDeleteClick2(message._id)}>
+                                        <XCircleIcon className="w-6 h-6 text-red-500" aria-hidden="true"/>
+                                    </button>
+                                    {isDeleteConfirmOpen2 && (
+                                        <div className="modal">
+                                            <div className="modal-content">
+                                                <p>Confirmer la suppression du message ?</p>
+                                                <button onClick={() => setDeleteConfirmOpen2(false)}>Non</button>
+                                                <button onClick={confirmDelete2}>Oui</button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </td>
+                            </tr>
                         ))}
-                    </ul>
+                        </tbody>
+                    </table>
                 </section>
+
+
             </div>
-            <Footer />
+            <Footer/>
         </>
     );
 }
