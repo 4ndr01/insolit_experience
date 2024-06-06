@@ -118,7 +118,7 @@ export default function NavComponent() {
 
 
                     {/* Main navigation */}
-                    <Link href="/contact/contact">
+                    <Link href="/idea/idea">
                         <p className="text-black text-lg font-bold hover:opacity-80 transition duration-300 cursor-pointer">Idées
                             de séjour</p>
                     </Link>
