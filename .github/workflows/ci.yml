@@ -1,23 +1,28 @@
-name: CI
+name: Next.js CI
 
 on:
   push:
     branches:
-      - main  # Déclenche le workflow sur les push vers la branche principale (à adapter selon vos besoins)
+      - main  
 
 jobs:
-  build:
-    runs-on: macos-latest  # Utilise macOS pour exécuter les jobs (à adapter selon vos besoins)
+  build-and-test:
+    runs-on: macos-latest 
 
     steps:
       - name: Checkout du code
-        uses: actions/checkout@v2  # Récupère le code du dépôt
+        uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v2  # Configure l'environnement Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' 
 
       - name: Installer les dépendances
-        run: npm install  # Installe les dépendances du projet
+        run: npm ci 
+
+      - name: Build
+        run: npm run build
 
       - name: Exécuter les tests
-        run: npm run test
+        run: npm test
