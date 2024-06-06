@@ -23,8 +23,6 @@ jobs:
           cache: 'npm' # Active la mise en cache des dépendances
           cache-dependency-path: '**/package-lock.json'  
 
-      - name: Transpiler avec Babel
-        run: npx babel --extensions '.js,.jsx,.ts,.tsx' src -d dist  # Ou utilisez la commande de build que vous utilisez habituellement
 
 
       - name: Installer les dépendances
