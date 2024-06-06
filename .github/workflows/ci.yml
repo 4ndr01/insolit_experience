@@ -9,8 +9,8 @@ jobs:
   build-and-test:
     defaults:
       run:
-        working-directory: /insolit_experience2/mflix  # Spécifie le répertoire de travail correct
-    runs-on: ubuntu-latest  
+        working-directory: /mflix  # Spécifie le répertoire de travail correct
+    runs-on: macos-latest  
 
     steps:
       - name: Checkout du code
