@@ -28,7 +28,7 @@ const News = () => {
         };
     }, []);
 
-    const goToGroup = (groupIndex: number) => {
+    const goToGroup = (groupIndex: number) => { // Pas de virgule ici
         setActiveGroup(groupIndex);
     };
 

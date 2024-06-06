@@ -28,8 +28,8 @@ const Pack = () => {
         };
     }, []);
 
-    const goToGroup = (groupIndex: number) => {
-        setActiveGroup(groupIndex);
+    const goToGroup = (groupIndex: number) => { // Pas de virgule ici
+        setActiveGroup(groupIndex)
     };
 
 
