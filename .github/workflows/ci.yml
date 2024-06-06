@@ -9,7 +9,7 @@ jobs:
   build-and-test:
     defaults:
       run:
-        working-directory: /mflix  # Spécifie le répertoire de travail correct
+        working-directory: /Users/marvinhoguet/WebstormProjects/insolit_experience2/mflix
     runs-on: macos-latest  
 
     steps:
