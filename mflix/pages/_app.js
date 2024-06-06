@@ -8,6 +8,8 @@ import "../nav.css";
 import "../components/voyages/list.css";
 import "../components/footer.css";
 import "../pages/voyage/id.css";
+import LoadingPage from "../components/loading";
+
 
 
 
@@ -29,5 +31,6 @@ function MyApp({ Component, pageProps }) {
 
     )
 }
+MyApp.loading = LoadingPage;
 
 export default MyApp;
