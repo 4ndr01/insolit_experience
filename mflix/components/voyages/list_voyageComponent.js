@@ -43,7 +43,7 @@ const VoyagesList = () => {
 
     return (
         <div className="relative mt-20">
-            <h2 className="text-3xl font-bold ml-15 mb-5">Les packs</h2>
+            <h2 className="text-3xl font-bold ml-15 mb-5">Pour vous</h2>
             <div className="flex justify-center items-center overflow-x-scroll scrollbar-hide">
                 <button onClick={prevGroup} className="mr-4">
                     <FiChevronLeft size={24} />
