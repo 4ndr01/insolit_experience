@@ -33,7 +33,7 @@ function UsersManagement() {
 
     const loadUsers = async () => {
         try {
-            const res = await fetch("http://localhost:3000/api/configUser/users", {
+            const res = await fetch('/api/configUser/users', {
                 method: "GET",
             });
 
