@@ -29,25 +29,27 @@ const Main = () => {
             <div className="min-h-screen bg-gradient-to-b from-purple-300 via-purple-400 to-blue-500 px-4 py-8 md:py-16"
                  style={{background: 'linear-gradient(to bottom, #8474E4,#4CB4FF)' }}>
                 <section className="container mx-auto p-4">
-                    <SearchBarWithVoyagesList voyages={Voyages} />
-                    <div className=" rounded-full" >
-                        <div>
-                            <VoyagesList />
-                            <News />
+
+
+                        <SearchBarWithVoyagesList voyages={Voyages}/>
+                        <div className=" rounded-full">
+                            <div>
+                                <VoyagesList/>
+                                <News/>
+
+                            </div>
+                            <div>
+                                <Packs/>
+                            </div>
 
                         </div>
-                        <div>
-                            <Packs />
-                        </div>
-
-                    </div>
 
                 </section>
 
             </div>
-            <Footer />
+            <Footer/>
         </>
-    );
+);
 }
 
 export default Main;

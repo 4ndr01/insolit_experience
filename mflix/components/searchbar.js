@@ -18,8 +18,19 @@ const SearchBarWithVoyagesList = ({ voyages }) => {
 
     return (
         <div className="relative">
-
             <div className="z-10 relative">
+                <div className="flex flex-col md:flex-row justify-center items-center">
+                    <img
+                        src="/Fichier21.svg"
+                        alt="logo"
+                        className="w-full md:w-48 h-48 md:h-48 mx-auto mb-4 md:mb-0 blur-sm"
+                    />
+                    <img
+                        src="/Fichier21.svg"
+                        alt="logo"
+                        className="w-full md:w-48 h-48 md:h-48 mx-auto blur-sm"
+                    />
+                </div>
                 <div className="flex justify-center items-center mt-20">
                     <input
                         type="text"
