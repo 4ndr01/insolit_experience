@@ -4,7 +4,7 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
-        domains: ["votre-domaine.com"], // Remplacez par votre domaine (ou une liste de domaines autorisés)
+        domains: ["https://insolit-experience.vercel.app"], // Remplacez par votre domaine (ou une liste de domaines autorisés)
         formats: ["image/webp"], // Ajouter le format WebP
     },
     webpack(config) {
