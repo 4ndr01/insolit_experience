@@ -48,31 +48,33 @@ const News = () => {
 
                 <div className="flex gap-4 justify-center items-center">
                     {Voyages.slice(activeGroup * groupSize, (activeGroup + 1) * groupSize).map((voyage) => (
-                        <div key={voyage.id}
-                             className="snap-center shrink-0 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 relative p-4">
-                            {/* Image du produit */}
-                            <div className="relative">
-                                <Image
-                                    src={voyage.image}
-                                    alt={voyage.name}
-                                    width={400}
-                                    height={400}
-                                    className="rounded-lg object-cover"
-                                />
-                                <span
-                                    className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Nouveau</span>
-                                <button
-                                    className="absolute top-2 right-2 p-2 rounded-full bg-white bg-opacity-75 hover:bg-opacity-100 transition duration-200">
-                                    <FiHeart size={20}/> {/* Bouton de liste de souhaits */}
-                                </button>
-                            </div>
+                        <div key={voyage.id} className="snap-center shrink-0 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 relative p-4">
+                            <Link href={`/voyage/${voyage.id}`}>
+                                <div className="relative">
 
-                            {/* Détails du produit */}
-                            <div className="mt-4 text-center bg-white p-4 rounded-lg"> {/* Ajout de bg-white et p-4 */}
-                                <h3 className="text-lg font-semibold mb-1">{voyage.name}</h3>
-                                <p className="text-gray-600 text-sm">{voyage.position}</p>
-                                <p className="text-lg font-semibold mt-2">{voyage.price} €</p>
-                            </div>
+                                    <Image
+                                        src={voyage.image}
+                                        alt={voyage.name}
+                                        width={400}
+                                        height={400}
+                                        className="rounded-lg object-cover"
+                                    />
+                                    <span
+                                        className="absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded-full">Nouveau</span>
+                                    <button
+
+                                        className="absolute top-2 right-2 p-2 rounded-full bg-white bg-opacity-75 hover:bg-opacity-100 transition duration-200">
+                                        <FiHeart size={20}/> {/* Bouton de liste de souhaits */}
+                                    </button>
+                                </div>
+
+                                {/* Détails du produit */}
+                                <div className="mt-4 text-center bg-white p-4 rounded-lg"> {/* Ajout de bg-white et p-4 */}
+                                    <h3 className="text-lg font-semibold mb-1">{voyage.name}</h3>
+                                    <p className="text-gray-600 text-sm">{voyage.position}</p>
+                                    <p className="text-lg font-semibold mt-2">{voyage.price} €</p>
+                                </div>
+                            </Link>
                         </div>
                     ))}
                 </div>

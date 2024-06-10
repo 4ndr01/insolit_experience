@@ -39,8 +39,9 @@ const News = () => {
                     {Voyages.slice(activeGroup * groupSize, (activeGroup + 1) * groupSize).map((voyage) => (
                         <div key={voyage.id}
                              className="snap-center shrink-0 w-full md:w-1/2 lg:w-1/3 xl:w-1/4 relative p-4">
-                            {/* Image du produit */}
+                            <Link href={`/voyage/${voyage.id}`}>
                             <div className="relative">
+
                                 <Image
                                     src={voyage.image}
                                     alt={voyage.name}
@@ -60,6 +61,8 @@ const News = () => {
                                 <p className="text-gray-600 text-sm">{voyage.position}</p>
                                 <p className="text-lg font-semibold mt-2">{voyage.price} €</p>
                             </div>
+                            </Link>
+
                         </div>
                     ))}
                 </div>
