@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession, signOut } from "next-auth/react";
-import Logo from "../public/logo.svg";
 import menuData from "./menuData";
 
 export default function NavComponent() {
