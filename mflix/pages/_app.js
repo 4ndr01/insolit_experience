@@ -10,6 +10,7 @@ import "../components/footer.css";
 import "../pages/voyage/id.css";
 import LoadingPage from "../components/loading";
 import { Toaster } from 'react-hot-toast';
+import Script from "next/script";
 
 
 
@@ -20,8 +21,6 @@ function MyApp({ Component, pageProps }) {
     return (
 
         <div>
-
-
             <SpeedInsights id="speed-insights"/>
             <SessionProvider session={pageProps.session}>
                 <UserProvider>
