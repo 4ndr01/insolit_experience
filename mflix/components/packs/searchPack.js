@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import Packs from "../packs/list";
+import Activity from "./list";
 import Link from 'next/link';
 import styles from'../../pages/SearchBar.module.css';
 const SearchBar = () => {
     const [query, setQuery] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
     const [category, setCategory] = useState('');
-    const [filteredData, setFilteredData] = useState(Packs); // Initialiser avec tous les voyages
+    const [filteredData, setFilteredData] = useState(Activity); // Initialiser avec tous les voyages
 
     const handleSearch = () => {
-        const filtered = Packs.filter(activity => {
+        const filtered = Activity.filter(activity => {
             const matchesQuery = activity.position.toLowerCase().includes(query.toLowerCase());
             const matchesPrice = maxPrice ? activity.price <= maxPrice : true;
             const matchesCategory = category ? activity.category === category : true;
@@ -56,7 +56,7 @@ const SearchBar = () => {
                     <Link href={`/voyage/${voyage.id}`} key={voyage.id}>
                         <li className={styles.voyageItem}>
                             <img src={voyage.image} alt={voyage.name} className={styles.image}/>
-                            <img src={voyage.image2} alt={voyage.name2} className={styles.image}/>
+                            <img src={voyage.image3} alt={voyage.name2} className={styles.image}/>
                             <h3 className={styles.title}>{voyage.name}</h3>
                             <p className={styles.content}>{voyage.content}</p>
                             <p className={styles.price}>{voyage.price} €</p>
