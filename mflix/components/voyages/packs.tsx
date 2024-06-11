@@ -39,7 +39,7 @@ const Pack = () => {
 
     return (
         <div className="relative mt-20">
-            <h2 className="text-3xl font-bold text-center mb-5 mr-20">Pour vous</h2>
+            <h2 className="text-3xl font-bold text-center mb-5 mr-20">Les packs</h2>
 
             {/* Carrousel */}
             <div className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory">
